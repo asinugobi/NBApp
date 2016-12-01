@@ -20,6 +20,7 @@ public class FileDownloader {
 	private String src;
 	private String statsName;
 	private String targetDirectory;
+	private String date;
 	
 	/**
 	 * Constructor will require a targetDirectory to store the download.
@@ -38,8 +39,48 @@ public class FileDownloader {
 		statsName = "cumulative_player_stats";
 		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
 		String fileName = statsName + ".csv";
-		System.out.print(download(src, targetDirectory, fileName));
+		System.out.println(download(src, targetDirectory, fileName));
 	}
+	/**
+	 * This method will download Full Game Schedule and print out the exact place of the download
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void fullSchedule() throws MalformedURLException, IOException {
+		statsName = "full_game_schedule";
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
+		String fileName = statsName + ".csv";
+		System.out.println(download(src, targetDirectory, fileName));
+	}
+	
+	/**
+	 * This method will download Daily Player Stats and print out the exact place of the download
+	 * @param inputDate is the date for which we are searching
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void  dailyPlayer(String inputDate) throws MalformedURLException, IOException {
+		statsName = "daily_player_stats";
+		date = inputDate;
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?fordate=" + date;
+		String fileName = statsName + ".csv";
+		System.out.println(download(src, targetDirectory, fileName));
+	}
+	
+	/**
+	 * This method will download Scoreboard and print out the exact place of the download
+	 * @param inputDate is the date for which we are searching
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void  scoreBoard(String inputDate) throws MalformedURLException, IOException {
+		statsName = "scoreboard";
+		date = inputDate;
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?fordate=" + date;
+		String fileName = statsName + ".csv";
+		System.out.println(download(src, targetDirectory, fileName));
+	}
+	
 
 
 	/**
