@@ -1,4 +1,3 @@
-package hw6_project;
 
 /**
  * This class is responsible for constructing relevant information 

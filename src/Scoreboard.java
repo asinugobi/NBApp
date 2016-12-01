@@ -1,4 +1,4 @@
-package hw6_project;
+
 
 /**
  * This class is responsible for tracking  the score of particular 

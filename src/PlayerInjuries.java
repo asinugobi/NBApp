@@ -1,5 +1,3 @@
-package hw6_project;
-
 /**
  * This class represents information regarding player(s) injuries. 
  * @author obinnaasinugo
