@@ -1,4 +1,4 @@
-package hw6_project;
+
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,3 @@
-package hw6_project;
 
 import static org.junit.Assert.*;
 

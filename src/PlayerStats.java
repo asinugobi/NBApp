@@ -1,4 +1,4 @@
-package hw6_project;
+
 
 /**
  * This class is responsible for reading in data regarding player stats. 
