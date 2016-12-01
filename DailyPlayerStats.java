@@ -19,8 +19,9 @@ public class DailyPlayerStats {
 	 * @param player
 	 */
 	public DailyPlayerStats(){
-		dailyPlayerStats = new FileReaderv3("MYSPORTSFEEDS-CUMULATIVE_PLAYER_STATS-NBA-20152016REGULAR-1.csv");
+		dailyPlayerStats = new FileReaderv3("MYSPORTSFEEDS-DAILY_PLAYER_STATS-NBA-20152016REGULAR-20151028.csv");
 		playersStatsMap = new HashMap<String, String[]>(); // initialize stats map 
+		makePlayersDataMap(); 
 	}
 	
 	/**
@@ -42,6 +43,7 @@ public class DailyPlayerStats {
 		for(String playerInfo : dailyPlayerStats.getLines()){
 			playerData = playerInfo.split(","); // split the string into array 
 			playerName = playerData[5] + " " + playerData[4]; // store player's name (first last)
+//			System.out.println(playerName);
 			
 			// if player is not in the map, store their data 
 			if(!playersStatsMap.containsKey(playerName)){
@@ -52,29 +54,6 @@ public class DailyPlayerStats {
 			
 		}
 	}
-	
-	
-	
-//	/**
-//	 * This method is responsible for returning an array containing the player's data 
-//	 * @param playerOfInterest, player of user's interest
-//	 * @return array of player's data 
-//	 */
-//	public String[] getPlayerStats(String playerOfInterest){
-//		String[] playerData; // stores player's data 
-//		String playerName; // stores player's name 
-//		
-//		// find the player by cycling through each string of data 
-//		for(String playerInfo : dailyPlayerStats.getLines()){
-//			playerData = playerInfo.split(",");
-//			playerName = playerData[5] + " " + playerData[4];
-//			
-//			if(playerOfInterest.equalsIgnoreCase(playerName))
-//				return playerData; 
-//		}
-//		
-//		return null; 
-//	}
 	
 	
 	/**

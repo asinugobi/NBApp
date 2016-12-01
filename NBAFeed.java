@@ -22,10 +22,6 @@ public class NBAFeed {
 		playerStats = new DailyPlayerStats(); 
 	}
 	
-//	public void welcomeUser(){
-//		System.out.println("Welcome to ");
-//	}
-	
 	public void askUserForFeed(){
 		// ask user for category of interest 
 		System.out.println("Please enter your category of interest (type the respective number): ");
@@ -130,18 +126,12 @@ public class NBAFeed {
 				else 
 					System.out.println("The player you entered did not play that day "
 							+ "or does not play in the NBA.\n");
-					
-				
 				
 			}
 			
 			// print player's stats 
 			printPlayerStats(playerName);
-		}
-		
-		
-		
-		
+		}	
 	}
 	
 	/**
