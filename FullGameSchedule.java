@@ -30,7 +30,7 @@ public class FullGameSchedule {
 	 * @param team
 	 * @return full schedule of games for the season 
 	 */
-	public ArrayList<String[]> getTeamGames(String team){
+	public ArrayList<String[]> getSeasonGames(String team){
 		
 		ArrayList<String[]> teamSchedule = new ArrayList<String[]>(); // create a list of games
 		String[] gameInfoArray; // store game info as an array 
