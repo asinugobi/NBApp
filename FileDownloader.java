@@ -24,14 +24,14 @@ public class FileDownloader {
 	
 	/**
 	 * Constructor will require a targetDirectory to store the download.
-	 * @param target is the directory
+	 * @param target the directory for the download
 	 */
 	public FileDownloader(String target) {
 		targetDirectory = target;
 	}
 	
 	/**
-	 * This method will download Cumulative Player Stats and print out the exact place of the download
+	 * This method will download Cumulative Player Stats with "csv" format.
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
@@ -39,10 +39,10 @@ public class FileDownloader {
 		statsName = "cumulative_player_stats";
 		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
 		String fileName = statsName + ".csv";
-		System.out.println(download(src, targetDirectory, fileName));
+		download(src, targetDirectory, fileName);
 	}
 	/**
-	 * This method will download Full Game Schedule and print out the exact place of the download
+	 * This method will download Full Game Schedule with "csv" format.
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
@@ -50,12 +50,27 @@ public class FileDownloader {
 		statsName = "full_game_schedule";
 		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
 		String fileName = statsName + ".csv";
-		System.out.println(download(src, targetDirectory, fileName));
+		download(src, targetDirectory, fileName);
 	}
 	
 	/**
-	 * This method will download Daily Player Stats and print out the exact place of the download
-	 * @param inputDate is the date for which we are searching
+	 * This method will download Daily Game Schedule with "csv" format.
+	 * @param inputDate the date for which we are searching
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void dailySchedule(String inputDate) throws MalformedURLException, IOException {
+		statsName = "daily_game_schedule";
+		date = inputDate;
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?fordate=" + date;
+		String fileName = statsName + ".csv";
+		download(src, targetDirectory, fileName);
+	}
+	
+	
+	/**
+	 * This method will download Daily Player Stats with "csv" format.
+	 * @param inputDate the date for which we are searching
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
@@ -64,12 +79,12 @@ public class FileDownloader {
 		date = inputDate;
 		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?fordate=" + date;
 		String fileName = statsName + ".csv";
-		System.out.println(download(src, targetDirectory, fileName));
+		download(src, targetDirectory, fileName);
 	}
 	
 	/**
-	 * This method will download Scoreboard and print out the exact place of the download
-	 * @param inputDate is the date for which we are searching
+	 * This method will download Scoreboard with "csv" format.
+	 * @param inputDate the date for which we are searching
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
@@ -78,17 +93,78 @@ public class FileDownloader {
 		date = inputDate;
 		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?fordate=" + date;
 		String fileName = statsName + ".csv";
-		System.out.println(download(src, targetDirectory, fileName));
+		download(src, targetDirectory, fileName);
 	}
 	
-
-
+	/**
+	 * This method will download Roster Players with "csv" format.
+	 * @param inputDate
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void rosterPlayers(String inputDate) throws MalformedURLException, IOException {
+		statsName = "roster_players";
+		date = inputDate;
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?fordate=" + date;
+		String fileName = statsName + ".csv";
+		download(src, targetDirectory, fileName);
+	}
+	
+	/**
+	 * This method will download Overall Team Standings with "csv" format.
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void allStandings() throws MalformedURLException, IOException {
+		statsName = "overall_team_standings";
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
+		String fileName = statsName + ".csv";
+		download(src, targetDirectory, fileName);
+	}
+	
+	/**
+	 * This method will download Conference Standings with "csv" format.
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void conferenceStandings() throws MalformedURLException, IOException {
+		statsName = "conference_team_standings";
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
+		String fileName = statsName + ".csv";
+		download(src, targetDirectory, fileName);
+	}
+	
+	/**
+	 * This method will download Division Standings with "csv" format.
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void divisionStandings() throws MalformedURLException, IOException {
+		statsName = "division_team_standings";
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
+		String fileName = statsName + ".csv";
+		download(src, targetDirectory, fileName);
+	}
+	
+	/**
+	 * This method will download Player Injuries with "csv" format.
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public void playerInjuries() throws MalformedURLException, IOException {
+		statsName = "player_injuries";
+		src = "https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/"+ statsName + ".csv?";
+		String fileName = statsName + ".csv";
+		download(src, targetDirectory, fileName);
+	}
+	
+	
 	/**
 	 *  This method will download a file from URL to specified directory,
 	 *  and the desired format of the file can be specified as well.
-	 * @param sourceUrl is where we request for a file
-	 * @param targetDirectory is where we put the download
-	 * @param targetFile is the filename for the download
+	 * @param sourceUrl where we request for a file
+	 * @param targetDirectory where we put the download
+	 * @param targetFile the filename for the download
 	 * @return
 	 * @throws MalformedURLException
 	 * @throws IOException
