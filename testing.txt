@@ -1,8 +1,5 @@
 What's up guys
 I’m doing good
 Test the git hub merge
-<<<<<<< HEAD
 Hello
-=======
-Test conflic
->>>>>>> 7cae5c57754aaa2c1faaea48beb6b932e948a18e
+Test conflict
