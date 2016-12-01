@@ -13,18 +13,7 @@ public class FileReaderv3 {
 	private String filename;
 	private ArrayList<String> lines;
 	
-	/**
-	 * The constructor
-	 * @param file the file to read
-	 */
-	public FileReaderv3(String file) {
-		filename = file;
-		
-		lines = new ArrayList<String>();
-		counter = 0; 
-		
-		readFile();
-	}
+
 	
 	/**
 	 * This will read in the entire file.
