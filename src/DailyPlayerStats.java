@@ -19,7 +19,7 @@ public class DailyPlayerStats {
 	 * @param player
 	 */
 	public DailyPlayerStats(){
-		dailyPlayerStats = new FileReaderv3("MYSPORTSFEEDS-DAILY_PLAYER_STATS-NBA-20152016REGULAR-20151028.csv");
+		dailyPlayerStats = new FileReaderv3("resources/MYSPORTSFEEDS-DAILY_PLAYER_STATS-NBA-20152016REGULAR-20151028.csv");
 		playersStatsMap = new HashMap<String, String[]>(); // initialize stats map 
 		makePlayersDataMap(); 
 	}
