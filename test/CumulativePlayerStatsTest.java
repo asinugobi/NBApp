@@ -31,7 +31,7 @@ public class CumulativePlayerStatsTest {
 		// while(it.hasNext()){
 		// 	System.out.println(element.getIvar1());
 		// }
-		//stats.getStats();
+		stats.getStats();
 	}
 	
 	@Test
