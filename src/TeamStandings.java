@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * This class is responsible for evaluating data pertaining to 
  * the overall standings, conference team standings, division 
- * team standing, and playoff team standing. 
+ * team standings, and playoff team standings. 
  * @author obinnaasinugo
  *
  */
