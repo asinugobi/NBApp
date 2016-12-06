@@ -1,0 +1,3 @@
+Username: obi Pwd: 123 Team: sixers Player: allen iverson
+Username: ij Pwd: 123 Team: Bulls Player: Michael Jordan
+Username: tay Pwd: 123 Team: Sixers Player: Dwayne Wade
