@@ -25,18 +25,8 @@ public class CumulativePlayerStatsTest {
 	// }
 
 	@Test // having trouble writing this test
-	public void getStatsTest(){
-<<<<<<< HEAD
-		
+	public void getStatsTest(){		
 		//stats.getStats();
-=======
-		//SortedSet<Double> pointsSorted = stats.getStats();
-		// Iterator it = pointsSorted.iterator();
-		// while(it.hasNext()){
-		// 	System.out.println(element.getIvar1());
-		// }
-
->>>>>>> 253a8ff38d13d0d8561f8634608ca41fd14a89f2
 	}
 	
 	@Test
