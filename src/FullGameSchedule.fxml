@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="334.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FullGameScheduleController">
+   <children>
+      <ImageView fitHeight="334.0" fitWidth="387.0" layoutX="27.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/CHI-1.png" />
+         </image>
+      </ImageView>
+      <DatePicker layoutX="89.0" layoutY="167.0" promptText="Look up a game..." />
+      <Text layoutX="74.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Season Schedule: " wrappingWidth="194.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="186.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@" wrappingWidth="31.21875">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="74.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAKERS">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="217.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BULLS">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="238.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="83.0" text="Click here" />
+      <Button layoutX="32.0" layoutY="286.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="63.0" text="Back" />
+      <Text layoutX="103.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7:00PM EST, United Airlines Center" wrappingWidth="228.21875">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="87.0" fitWidth="114.0" layoutX="67.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="112.0" fitWidth="157.0" layoutX="67.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/lal.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="96.0" fitWidth="112.0" layoutX="211.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/chi.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

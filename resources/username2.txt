@@ -1,5 +1,9 @@
 Username: obi Pwd: 123 Team: sixers Player: allen iverson
 Username: ij Pwd: 123 Team: Bulls Player: Michael Jordan
 Username: tay Pwd: 123 Team: Sixers Player: Dwayne Wade
+<<<<<<< HEAD
 Username: chi90 Pwd: well Team: Hawks Player: Lebron James
 Username: chi Pwd: lol Team: Derrick Player: Rose
+=======
+Username: Eddie Pwd: cit593 Team: Utah Jazz Player: Dwyane Wade
+>>>>>>> 253a8ff38d13d0d8561f8634608ca41fd14a89f2
