@@ -24,24 +24,21 @@ public class CumulativePlayerStatsTest {
 	// 	}
 	// }
 
-	@Test
+	@Test // having trouble writing this test
 	public void getStatsTest(){
-		//SortedSet<Double> pointsSorted = stats.getStats();
-		// Iterator it = pointsSorted.iterator();
-		// while(it.hasNext()){
-		// 	System.out.println(element.getIvar1());
-		// }
-<<<<<<< HEAD
-		// stats.getStats();
-=======
+		
 		//stats.getStats();
->>>>>>> ff4d2b87c8f18ff4c9c777be4cf475d15d10a686
 	}
 	
 	@Test
 	public void testGetStatCategory(){
 		int num = stats.getStatCategory("points");
 		assertEquals("The column for points is",47, num);
+	}
+	
+	@Test // should i rewrite in order to get an actual test
+	public void testGetStatTopTen(){
+		stats.getTopTen();
 	}
 
 }
