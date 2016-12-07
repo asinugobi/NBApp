@@ -31,11 +31,7 @@ public class CumulativePlayerStatsTest {
 		// while(it.hasNext()){
 		// 	System.out.println(element.getIvar1());
 		// }
-<<<<<<< HEAD
-		// stats.getStats();
-=======
-		//stats.getStats();
->>>>>>> ff4d2b87c8f18ff4c9c777be4cf475d15d10a686
+
 	}
 	
 	@Test
