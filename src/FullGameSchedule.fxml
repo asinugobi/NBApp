@@ -18,7 +18,7 @@
       <Text layoutX="74.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Season Schedule: " wrappingWidth="194.0">
          <font>
             <Font name="System Bold" size="13.0" />
-         </font>
+         </fon>
       </Text>
       <Text layoutX="186.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@" wrappingWidth="31.21875">
          <font>
