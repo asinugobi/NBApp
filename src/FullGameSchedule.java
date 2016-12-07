@@ -14,7 +14,7 @@ public class FullGameSchedule {
 	
 	
 	public FullGameSchedule(){
-		fullGameSchedule = new FileReaderv3("MYSPORTSFEEDS-FULL_GAME_SCHEDULE-NBA-20152016REGULAR.csv");
+		fullGameSchedule = new FileReaderv3("resources/MYSPORTSFEEDS-FULL_GAME_SCHEDULE-NBA-20152016REGULAR.csv");
 	}
 	
 	/**
