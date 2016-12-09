@@ -39,8 +39,7 @@ public class TeamStats {
 	 * @throws MalformedURLException
 	 */
 	public TeamStats(String team) throws MalformedURLException, IOException {
-		dl = new FileDownloader("/Users/Eddie/Documents/cit-591-projects-fall-2016-sports_feeds/resources/");
-		dl.cumulativePlayers();
+
 		cumu = new FileReaderv3("resources/cumulative_player_stats.csv");
 		lines = cumu.getLines();
 		teamName = team;
