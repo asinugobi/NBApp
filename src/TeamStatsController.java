@@ -37,7 +37,7 @@ public class TeamStatsController implements Initializable{
 	private ArrayList<Player> top5Assists;
 
 	public TeamStatsController() throws MalformedURLException, IOException {
-		theTeam = new Team("Jazz");
+		theTeam = new Team("Warriors");
 		top5Rebounds =  new ArrayList();
 		top5Scores = new ArrayList();
 		top5Steals = new ArrayList();
