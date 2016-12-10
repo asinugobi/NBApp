@@ -86,7 +86,7 @@ public class TableViewSample2 extends Application {
 
     private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
-        Map<String, Double> temp = stats.getStats();
+        Map<String, Double> temp = stats.getStats("points");
         for (String player : temp.keySet()) {
             Map<String, String> dataRow = new HashMap<>();
 

@@ -83,11 +83,11 @@
   * This method gets the top 10 scorers in the league
   * generalize this function for any statistical category
   */
-  public Map<String, Double> getStats(){
+  public Map<String, Double> getStats(String cat1){
     Map<String, Double> points = new TreeMap<String, Double>();
     String playerName; // player's name
     Double ppg; //  player's points per game
-    int category = getStatCategory("points"); // use this to generalize the function to get any column
+    int category = getStatCategory(cat1); // use this to generalize the function to get any column
     String[] temp;
 
     // prompt user to enter category of interest
@@ -144,8 +144,8 @@
    * This method prints the top ten players in a given statistical category
    * @return null
    */
-  public void getTopTen(){
-    Map<String, Double> stats = getStats();
+  public void getTopTen(String cat1){
+    Map<String, Double> stats = getStats(cat1);
     Double[] points = new Double[stats.size()];
     String[] players = new String[stats.size()];
     int index = 0;
