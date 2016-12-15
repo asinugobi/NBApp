@@ -20,7 +20,7 @@ public class PlayerInjuries {
 	public PlayerInjuries(String player, String team) throws MalformedURLException, IOException{
 		this.player = player; 
 		this.teamName = team;
-		dl = new FileDownloader("/Users/Eddie/Documents/cit-591-projects-fall-2016-sports_feeds/resources/");
+		dl = new FileDownloader("resources/");
 		dl.playerInjuries();
 		injury = new FileReaderv3("resources/player_injuries.csv");
 		lines = injury.getLines();
@@ -77,7 +77,7 @@ public class PlayerInjuries {
 	 */
 	public String getPlayer() {
 		if (allInjuries.containsKey(player)) {
-			return player + ", " + allInjuries.get(player);
+			return player;
 		}
 		else {
 			return null;
@@ -91,7 +91,7 @@ public class PlayerInjuries {
 	public ArrayList<String> getTeam() {
 		ArrayList<String> team = new ArrayList();
 		for (String name: teamInjuries.keySet()) {
-			team.add( name + " " + teamInjuries.get(name) );
+			team.add( name );
 		}
 		return team;
 	}

@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- * This class will present the performance of franchise players for a specified
+ * This class will store the performance of all players for a specified
  * team.
  * 
  * @author Eddie
@@ -25,11 +25,18 @@ public class TeamStats {
 	private HashMap<String, Double> assists;
 	private HashMap<String, Double> steals;
 	private HashMap<String, Double> blocks;
-	private ArrayList<String> top5Scores;
-	private ArrayList<String> top5Rebounds;
-	private ArrayList<String> top5Assists;
-	private ArrayList<String> top5Steals;
-	private ArrayList<String> top5Blocks;
+
+	private ArrayList<String> top5Scorer;
+	private ArrayList<String> top5Rebounder;
+	private ArrayList<String> top5Assistant;
+	private ArrayList<String> top5Stealer;
+	private ArrayList<String> top5Blocker;
+
+	private ArrayList<String>top5Score;
+	private ArrayList<String>top5Block;
+	private ArrayList<String>top5Assist;
+	private ArrayList<String>top5Rebound;
+	private ArrayList<String>top5Steal;
 
 	/**
 	 * Constructor will read in cumulative_player_stats.csv and store it to
@@ -39,7 +46,8 @@ public class TeamStats {
 	 * @throws MalformedURLException
 	 */
 	public TeamStats(String team) throws MalformedURLException, IOException {
-
+		dl = new FileDownloader("resources/");
+		dl.cumulativePlayers();
 		cumu = new FileReaderv3("resources/cumulative_player_stats.csv");
 		lines = cumu.getLines();
 		teamName = team;
@@ -48,18 +56,33 @@ public class TeamStats {
 		assists = new HashMap<String, Double>();
 		steals = new HashMap<String, Double>();
 		scores = new HashMap<String, Double>();
-		top5Scores = new ArrayList<String>();
-		top5Rebounds = new ArrayList<String>();
-		top5Steals = new ArrayList<String>();
-		top5Assists = new ArrayList<String>();
-		top5Blocks = new ArrayList<String>();
+
+		top5Scorer = new ArrayList<String>();
+		top5Rebounder = new ArrayList<String>();
+		top5Stealer = new ArrayList<String>();
+		top5Assistant = new ArrayList<String>();
+		top5Blocker = new ArrayList<String>();
+
+		top5Score = new ArrayList<String>();
+		top5Block = new ArrayList<String>();
+		top5Assist = new ArrayList<String>();
+		top5Rebound = new ArrayList<String>();
+		top5Steal = new ArrayList<String>();
+
 		scoresGenerator();
 		blocksGenerator();
 		stealsGenerator();
 		assistsGenerator();
 		reboundsGenerator();
+		top5Generator(scores, top5Scorer);
+		top5Generator(rebounds, top5Rebounder);
+		top5Generator(assists, top5Assistant);
+		top5Generator(steals, top5Stealer);
+		top5Generator(blocks, top5Blocker);
+
+		allStatsGenerator();
 	}
-	
+
 	/**
 	 * This method will generate top5 team players of specified category in an ArrayList
 	 * @param input the HashMap for specified category of team stats
@@ -89,25 +112,31 @@ public class TeamStats {
 				}
 			}
 		}
-		
-		//		Set set = input.entrySet();
-//		Iterator i = set.iterator();
-//		while(i.hasNext()) {
-//		         Map.Entry next = (Map.Entry)i.next();
-//		         if (stats.isEmpty()) {
-//		        	 stats.add(next.getKey().toString());
-//		         }
-//		         else if (!stats.isEmpty() && stats.size() < 5) {
-//		        	 stats.add(next.getKey().toString());
-//		         } else {
-//		        	 for (String str: stats) {
-//		        		
-//		        	 }
-//		         }
-//		}
+
 	}
-	
-	
+
+	private void allStatsGenerator() {
+		for(String name: top5Scorer) {
+			top5Score.add(this.getScores().get(name).toString());
+		}
+
+		for(String name: top5Blocker) {
+			top5Block.add(this.getBlocks().get(name).toString());
+		}
+
+		for(String name: top5Assistant) {
+			top5Assist.add(this.getAssists().get(name).toString());
+		}
+		for(String name: top5Rebounder) {
+			top5Rebound.add(this.getRebounds().get(name).toString());
+		}
+
+		for(String name: top5Stealer) {
+			top5Steal.add(this.getSteals().get(name).toString());
+		}
+	}
+
+
 	/**
 	 * This method will generate a HashMap list storing team players and BPG.
 	 */
@@ -139,7 +168,7 @@ public class TeamStats {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will generate a HashMap list storing team players and SPG.
 	 */
@@ -156,7 +185,7 @@ public class TeamStats {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will generate a HashMap list storing team players and APG.
 	 */
@@ -173,7 +202,7 @@ public class TeamStats {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will generate a HashMap list storing team players and RPG.
 	 */
@@ -190,7 +219,7 @@ public class TeamStats {
 			}
 		}
 	}
-	
+
 	/**
 	 * @return the blocks
 	 */
@@ -228,43 +257,74 @@ public class TeamStats {
 	}
 
 	/**
-	 * @return the top5Scores
+	 * @return the top5Scorer
 	 */
-	public ArrayList<String> getTop5Scores() {
-		top5Generator(scores, top5Scores);
-		return top5Scores;
+	public ArrayList<String> getTop5Scorer() {
+		return top5Scorer;
 	}
 
 	/**
-	 * @return the top5Rebounds
+	 * @return the top5Rebounder
 	 */
-	public ArrayList<String> getTop5Rebounds() {
-		top5Generator(rebounds, top5Rebounds);
-		return top5Rebounds;
+	public ArrayList<String> getTop5Rebounder() {
+		return top5Rebounder;
 	}
 
 	/**
-	 * @return the top5Assists
+	 * @return the top5Assistant
 	 */
-	public ArrayList<String> getTop5Assists() {
-		top5Generator(assists, top5Assists);
-		return top5Assists;
+	public ArrayList<String> getTop5Assistant() {
+		return top5Assistant;
 	}
 
 	/**
-	 * @return the top5Steals
+	 * @return the top5Stealer
 	 */
-	public ArrayList<String> getTop5Steals() {
-		top5Generator(steals, top5Steals);
-		return top5Steals;
+	public ArrayList<String> getTop5Stealer() {
+		return top5Stealer;
 	}
 
 	/**
-	 * @return the top5Blockss
+	 * @return the top5Blocker
 	 */
-	public ArrayList<String> getTop5Blockss() {
-		top5Generator(blocks, top5Blocks);
-		return top5Blocks;
+	public ArrayList<String> getTop5Blocker() {
+		return top5Blocker;
 	}
-	
+
+
+	/**
+	 * @return the top5Score
+	 */
+	public ArrayList<String> getTop5Score() {
+		return top5Score;
+	}
+
+	/**
+	 * @return the top5Block
+	 */
+	public ArrayList<String> getTop5Block() {
+		return top5Block;
+	}
+
+	/**
+	 * @return the top5Assist
+	 */
+	public ArrayList<String> getTop5Assist() {
+		return top5Assist;
+	}
+
+	/**
+	 * @return the top5Rebound
+	 */
+	public ArrayList<String> getTop5Rebound() {
+		return top5Rebound;
+	}
+
+	/**
+	 * @return the top5Steal
+	 */
+	public ArrayList<String> getTop5Steal() {
+		return top5Steal;
+	}
+
 }

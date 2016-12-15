@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  */
 public class TeamStatsController implements Initializable{
 
-	private Team theTeam;
+	private TeamStats theTeam;
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
 	@FXML private TableColumn<Player, String> avg;
@@ -37,7 +37,7 @@ public class TeamStatsController implements Initializable{
 	private ArrayList<Player> top5Assists;
 
 	public TeamStatsController() throws MalformedURLException, IOException {
-		theTeam = new Team("Warriors");
+		theTeam = new TeamStats("Spurs");
 		top5Rebounds =  new ArrayList();
 		top5Scores = new ArrayList();
 		top5Steals = new ArrayList();
@@ -45,9 +45,11 @@ public class TeamStatsController implements Initializable{
 		top5Assists = new ArrayList();
 	}
 
+	/**
+	 * This method will create the ArrayList of <player> for the first time, and return it afterwards
+	 * @return the <player> ArrayList
+	 */
 	private List<Player> getReboundList(){
-		// construct top5 list by looping
-		// and return the list  
 		if (top5Rebounds.isEmpty()){
 			for (int i=0; i<5 ; i++) {
 				top5Rebounds.add(new Player(theTeam.getTop5Rebounder().get(i), theTeam.getTop5Rebound().get(i)) );
@@ -174,7 +176,8 @@ public class TeamStatsController implements Initializable{
 		avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
 		top5.getItems().setAll(getBlockList());
 	}
-
+	
+	//Creating a player class to store the name and avg number
 	public static class Player {
 
 		private final SimpleStringProperty name;
@@ -189,16 +192,8 @@ public class TeamStatsController implements Initializable{
 			return name.get();
 		}
 
-		public void setFirstName(String fName) {
-			name.set(fName);
-		}
-
 		public String getAvg() {
 			return avg.get();
-		}
-
-		public void setLastName(String fName) {
-			avg.set(fName);
 		}
 
 	}
