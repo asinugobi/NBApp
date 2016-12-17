@@ -26,7 +26,7 @@ public class CumulativePlayerStatsTest {
 
 	@Test // having trouble writing this test
 	public void getStatsTest(){		
-		//stats.getStats();
+		stats.getStats("points");
 	}
 	
 	@Test
@@ -37,7 +37,7 @@ public class CumulativePlayerStatsTest {
 	
 	@Test // should i rewrite in order to get an actual test
 	public void testGetStatTopTen(){
-		stats.getTopTen();
+		stats.getTopTen("points");
 	}
 
 }
