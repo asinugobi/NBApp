@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 public class PlayerInjuriesController implements Initializable {
 	
+	private String username = null; 
 	private PlayerInjuries hurt ;
 	@FXML private TableView<Player1> injury;
 	@FXML private TableColumn<Player1, String> name;
@@ -64,7 +65,12 @@ public class PlayerInjuriesController implements Initializable {
 		primaryStage.setTitle("Select Category");
 
 		// load the category scene file 
-		Parent root = FXMLLoader.load(getClass().getResource("SelectCategory.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
+		Parent root = loader.load(); 
+		// pass username info 
+		CategoryController category = loader.<CategoryController>getController(); 
+		category.setUserName(username);
+		
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -111,6 +117,12 @@ public class PlayerInjuriesController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setUserName(String username) {
+		// TODO Auto-generated method stub
+		this.username = username; 
 		
 	}
 	

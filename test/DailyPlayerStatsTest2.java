@@ -1,6 +1,8 @@
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -12,7 +14,7 @@ public class DailyPlayerStatsTest2 {
 	DailyPlayerStats stats; // initialize object 
 	
 	@Before 
-	public void setUp(){
+	public void setUp() throws MalformedURLException, IOException{
 		stats = new DailyPlayerStats(); 
 	}
 	

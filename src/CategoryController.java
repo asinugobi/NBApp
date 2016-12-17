@@ -1,3 +1,8 @@
+/**
+ * This controller class is responsible for handling the GUI interface for the user when selecting a category 
+ * @author obinnaasinugo
+ */
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,6 +29,8 @@ import javafx.stage.Stage;
 
 public class CategoryController {
 	
+	private String username = null; 
+	
 	/**
 	 * Load the appropriate category based on which category button was pushed.
 	 * @param event, clicked category button 
@@ -46,16 +53,61 @@ public class CategoryController {
 		for(String part : categoryArray)
 			category = category + part; 
 		
-//		System.out.println(category);
+		Parent root = null; // set root to null 
+		
+		// set up stage and pass through user name to next controller depending on which category is pressed 
+		switch(category){
+		case "CumulativePlayerStats":
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loader.load(); 
+			CumulativeStatsController stats = loader.<CumulativeStatsController>getController(); 
+			stats.setUserName(username);
+			break;
+
+		case "DailyPlayerStats": 
+			FXMLLoader loaderDaily = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loaderDaily.load(); 
+			DailyStatsController statsDaily = loaderDaily.<DailyStatsController>getController(); 
+			statsDaily.setUserName(username);
+			break; 
+			
+		case "FullGameSchedule": 
+			FXMLLoader loaderFullSchedule = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loaderFullSchedule.load(); 
+			FullGameScheduleController fullSchedule = loaderFullSchedule.<FullGameScheduleController>getController(); 
+			fullSchedule.setUserName(username);
+			break;
+		case "TeamStats":
+			FXMLLoader loaderTeamStats = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loaderTeamStats.load(); 
+			TeamStatsController teamStats = loaderTeamStats.<TeamStatsController>getController(); 
+			teamStats.setUserName(username);
+			break;
+		case "PlayerInjuries": 
+			FXMLLoader loaderPlayerInjuries = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loaderPlayerInjuries.load(); 
+			PlayerInjuriesController playerInjuries = loaderPlayerInjuries.<PlayerInjuriesController>getController(); 
+			playerInjuries.setUserName(username);
+			break;
+		default: 
+			root = FXMLLoader.load(getClass().getResource(category + ".fxml"));
+			break; 
+			
+		}
 		
 		// load the category scene file 
-		Parent root = FXMLLoader.load(getClass().getResource(category + ".fxml"));
+//		Parent root = FXMLLoader.load(getClass().getResource(category + ".fxml"));
 		Scene scene = new Scene(root);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 	
+	/**
+	 * Method will allow user to return back to Select Category stage 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void back(ActionEvent event) throws IOException{
 		Stage primaryStage =  (Stage) ((Node) event.getSource()).getScene().getWindow();  
 		
@@ -68,6 +120,15 @@ public class CategoryController {
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	
+	/**
+	 * This method will handle passing through the username info so it can be used to query the database 
+	 * @param name
+	 */
+	public void setUserName(String name){
+		username = name; 
+		System.out.println(username);
 	}
 
 }

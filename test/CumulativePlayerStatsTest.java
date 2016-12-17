@@ -37,7 +37,11 @@ public class CumulativePlayerStatsTest {
 	
 	@Test // should i rewrite in order to get an actual test
 	public void testGetStatTopTen(){
+<<<<<<< HEAD
 		stats.getTopTen("points");
+=======
+		stats.getTopTen(null);
+>>>>>>> 7e44ec9810e02f2d8160a255854017b24afcb48f
 	}
 
 }

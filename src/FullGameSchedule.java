@@ -1,5 +1,7 @@
 
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 /**
@@ -9,12 +11,14 @@ import java.util.ArrayList;
  *
  */
 public class FullGameSchedule {
-	
+	private FileDownloader dl;
 	private FileReaderv3  fullGameSchedule; 
 	
 	
-	public FullGameSchedule(){
-		fullGameSchedule = new FileReaderv3("resources/MYSPORTSFEEDS-FULL_GAME_SCHEDULE-NBA-20152016REGULAR.csv");
+	public FullGameSchedule() throws MalformedURLException, IOException{
+		dl = new FileDownloader("resources/");
+		dl.fullSchedule();
+		fullGameSchedule = new FileReaderv3("resources/full_game_schedule.csv");
 	}
 	
 	/**

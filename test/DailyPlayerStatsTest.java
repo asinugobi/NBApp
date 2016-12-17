@@ -1,6 +1,8 @@
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -12,7 +14,7 @@ public class DailyPlayerStatsTest {
 	DailyPlayerStats stats; // initialize object 
 	
 	@Before 
-	public void setUp(){
+	public void setUp() throws MalformedURLException, IOException{
 		stats = new DailyPlayerStats(); 
 	}
 	
@@ -20,9 +22,9 @@ public class DailyPlayerStatsTest {
 	public void testMakeDataMap() {
 		HashMap<String, String[]> playerStats = stats.getPlayersStatsMap();
 		
-//		for(String player : playerStats.keySet()){
-//			System.out.println(player + ": " + Arrays.toString(playerStats.get(player)));
-//		}
+		for(String player : playerStats.keySet()){
+			System.out.println(player + ": " + Arrays.toString(playerStats.get(player)));
+		}
 		
 		assertNotNull("Stats map should not be empty or null.", playerStats);
 		
@@ -35,7 +37,7 @@ public class DailyPlayerStatsTest {
 	 */
 	@Test
 	public void testGetPlayerStats(){
-		String player = "Anthony Davis";
+		String player = "Chris Paul";
 		String[] playerStats = stats.getPlayerStats(player); 
 		
 		System.out.println(Arrays.toString(playerStats)); 

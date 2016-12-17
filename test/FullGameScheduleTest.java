@@ -2,6 +2,8 @@
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,11 +15,11 @@ public class FullGameScheduleTest {
 	FullGameSchedule testSchedule; 
 	
 	@Before 
-	public void setup(){
+	public void setup() throws MalformedURLException, IOException{
 		testSchedule = new FullGameSchedule(); 
 	}
 	
-//	@Test
+	@Test
 	public void testGetTeamGames() {
 		String team = "Bulls"; // input team name  
 		ArrayList<String[]> teamSchedule = testSchedule.getSeasonGames(team); // grab schedule of all the team games 
@@ -33,7 +35,7 @@ public class FullGameScheduleTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testGetGamesOnDay() {
 		String date = "2015-11-11"; // input date of the game  
 		ArrayList<String[]> games = testSchedule.getGamesOnDay(date); // grab schedule of all the team games 

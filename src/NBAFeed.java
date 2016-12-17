@@ -1,5 +1,7 @@
 
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -16,8 +18,10 @@ public class NBAFeed {
 	
 	/**
 	 * This constructor initializes the Scanner object
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public NBAFeed(){
+	public NBAFeed() throws MalformedURLException, IOException{
 		input = new Scanner(System.in); 
 		playerStats = new DailyPlayerStats(); 
 	}

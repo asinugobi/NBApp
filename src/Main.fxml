@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="300.0" prefWidth="444.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane prefHeight="300.0" prefWidth="444.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainControllerv2">
    <children>
       <ImageView fitHeight="320.0" fitWidth="444.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/logo-nba.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="322.0" layoutY="241.0" mnemonicParsing="false" onAction="#login" text="Sign In" />
+      <Button layoutX="322.0" layoutY="241.0" mnemonicParsing="false" onAction="#login_v2" text="Sign In" />
       <TextField layoutX="139.0" layoutY="119.0" text="User Name " visible="false">
          <font>
             <Font name="System Font Regular" size="13.0" />
