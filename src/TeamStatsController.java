@@ -26,6 +26,8 @@ import javafx.stage.Stage;
  */
 public class TeamStatsController implements Initializable{
 
+	private String username = null; 
+	
 	private TeamStats theTeam;
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
@@ -111,7 +113,12 @@ public class TeamStatsController implements Initializable{
 		primaryStage.setTitle("Select Category");
 
 		// load the category scene file 
-		Parent root = FXMLLoader.load(getClass().getResource("SelectCategory.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
+		Parent root = loader.load(); 
+		// pass username info 
+		CategoryController category = loader.<CategoryController>getController(); 
+		category.setUserName(username);
+		
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -203,5 +210,11 @@ public class TeamStatsController implements Initializable{
 		//        name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
 		//        avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
 		//        top5.getItems().setAll(getPlayerList());
+	}
+
+	public void setUserName(String username) {
+		// TODO Auto-generated method stub
+		this.username = username; 
+		
 	}
 }

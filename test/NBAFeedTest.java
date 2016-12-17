@@ -1,6 +1,8 @@
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -13,7 +15,7 @@ public class NBAFeedTest {
 	private DailyPlayerStats playerStats; 
 	
 	@Before 
-	public void createObject(){
+	public void createObject() throws MalformedURLException, IOException{
 		feed = new NBAFeed();
 		playerStats = new DailyPlayerStats(); 
 	}

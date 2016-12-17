@@ -28,6 +28,8 @@ import javafx.stage.Stage;
  */
 public class CumulativeStatsController implements Initializable{
 
+	private String username = null; 
+	
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
 	@FXML private TableColumn<Player, Double> avg;
@@ -99,9 +101,10 @@ public class CumulativeStatsController implements Initializable{
 
 		// set title of the stage
 		primaryStage.setTitle("Select Category");
-
-		// load the category scene file
-		Parent root = FXMLLoader.load(getClass().getResource("SelectCategory.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
+		Parent root = loader.load(); 
+		CategoryController category = loader.<CategoryController>getController(); 
+		category.setUserName(username);
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -194,6 +197,15 @@ public class CumulativeStatsController implements Initializable{
 		// 	avg.set(fName);
 		// }
 
+	}
+	
+	/**
+	 * This method will handle passing through the username info so it can be used to query the database 
+	 * @param name
+	 */
+	public void setUserName(String name){
+		username = name; 
+		System.out.println(username);
 	}
 
   // initializes table_view

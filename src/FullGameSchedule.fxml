@@ -35,7 +35,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <Button layoutX="238.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="83.0" text="Click here" />
+      <Button layoutX="238.0" layoutY="233.0" mnemonicParsing="false" onAction="#allGames" prefHeight="36.0" prefWidth="83.0" text="Click here" />
       <Button layoutX="32.0" layoutY="286.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="63.0" text="Back" />
       <Text layoutX="103.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7:00PM EST, United Airlines Center" wrappingWidth="228.21875">
          <font>

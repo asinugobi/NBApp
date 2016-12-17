@@ -37,7 +37,7 @@ public class CumulativePlayerStatsTest {
 	
 	@Test // should i rewrite in order to get an actual test
 	public void testGetStatTopTen(){
-		stats.getTopTen();
+		stats.getTopTen(null);
 	}
 
 }
