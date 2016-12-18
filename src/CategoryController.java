@@ -71,6 +71,20 @@ public class CategoryController {
 			statsDaily.setUserName(username);
 			break; 
 			
+		case "TeamStandings": 
+			FXMLLoader loaderStandings = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loaderStandings.load(); 
+			TeamStandingsController standings = loaderStandings.<TeamStandingsController>getController(); 
+			standings.setUserName(username);
+			break; 
+			
+		case "Scoreboard": 
+			FXMLLoader loaderScoreBoard = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+			root = loaderScoreBoard.load(); 
+			ScoreBoardController scoreboard = loaderScoreBoard.<ScoreBoardController>getController(); 
+			scoreboard.setUserName(username);
+			break;
+			
 		case "FullGameSchedule": 
 			FXMLLoader loaderFullSchedule = new FXMLLoader(getClass().getResource(category + ".fxml"));	
 			root = loaderFullSchedule.load(); 

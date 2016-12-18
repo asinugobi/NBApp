@@ -27,10 +27,15 @@ import javafx.stage.Stage;
  *
  */
 public class ScoreBoardController implements Initializable{
+<<<<<<< HEAD
 
+=======
+	private String username = null;
+>>>>>>> e4fb5710dbf6554daf27293a1a9bfa449b750605
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
-	@FXML private TableColumn<Player, Double> avg;
+	@FXML private TableColumn<Player, Double> homescore;
+	@FXML private TableColumn<Player, Double> awayscore;
 	private ArrayList<Player> top5Rebounds;
 	private ArrayList<Player> top5Scores;
 	private ArrayList<Player> top5Steals;
@@ -98,7 +103,8 @@ public class ScoreBoardController implements Initializable{
 	public static class Player {
 
 		private final SimpleStringProperty name;
-		private final SimpleDoubleProperty avg;
+		private final SimpleDoubleProperty homescore;
+		private final SimpleDoubleProperty awayscore;
 
 		private Player(String name, Double avg) {
 			this.name = new SimpleStringProperty(name);
@@ -121,6 +127,15 @@ public class ScoreBoardController implements Initializable{
 		// 	avg.set(fName);
 		// }
 
+	}
+
+	/**
+	 * This method will handle passing through the username info so it can be used to query the database
+	 * @param name
+	 */
+	public void setUserName(String name){
+		username = name;
+		System.out.println(username);
 	}
 
   // initializes table_view
