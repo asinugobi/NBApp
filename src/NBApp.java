@@ -39,10 +39,9 @@ public class NBApp extends Application{
 		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml")); 
 		
 		Scene scene = new Scene(root);
+		
 		primaryStage.setScene(scene);
-		
 		primaryStage.show();
-		
 	}
 	
 	public void printUser(String user){

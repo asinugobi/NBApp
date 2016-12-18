@@ -79,52 +79,52 @@ public class MainControllerv2 {
 	 * @param event
 	 * @throws Exception 
 	 */
-	public void login(ActionEvent event) throws Exception{
-		String userName = username.getText();
-		String passWord = password.getText();
-		
-//		loginStatus.setText("Login successful");
-		
-		try {
-			// read in file containing all the users' info 
-			FileWriter fw = new FileWriter("resources/username2.txt",true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw);
-			
-			// initializes variables for reading in name 
-			String name = null; 
-			String[] userArray; 
-			boolean hasName = false; 
-			
-			Scanner input = new Scanner(new File("resources/username2.txt"));
-			
-			// read through users' info file and test for to see if file contains enter login info 
-			if(input.hasNextLine()){
-				while(input.hasNextLine()){
-					name = input.nextLine();
-					userArray = name.split(" "); 
-					// login successful (file contains login info) 
-					if(userName.equals(userArray[1]) && passWord.equals(userArray[3])){
-						loginStatus.setText("Login successful.");
-						selectCategory(event); 
-						hasName = true; 
-					}
-				}	
-				
-				// login failed (file does not contain login info) 
-				if(!hasName)
-					loginStatus.setText("Login failed. Please try again or create account.");
-				
-			}else{
-				loginStatus.setText("Login failed. Please try again.");
-			}	
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	           
-    }
+//	public void login(ActionEvent event) throws Exception{
+//		String userName = username.getText();
+//		String passWord = password.getText();
+//		
+////		loginStatus.setText("Login successful");
+//		
+//		try {
+//			// read in file containing all the users' info 
+//			FileWriter fw = new FileWriter("resources/username2.txt",true);
+//			BufferedWriter bw = new BufferedWriter(fw);
+//			PrintWriter out = new PrintWriter(bw);
+//			
+//			// initializes variables for reading in name 
+//			String name = null; 
+//			String[] userArray; 
+//			boolean hasName = false; 
+//			
+//			Scanner input = new Scanner(new File("resources/username2.txt"));
+//			
+//			// read through users' info file and test for to see if file contains enter login info 
+//			if(input.hasNextLine()){
+//				while(input.hasNextLine()){
+//					name = input.nextLine();
+//					userArray = name.split(" "); 
+//					// login successful (file contains login info) 
+//					if(userName.equals(userArray[1]) && passWord.equals(userArray[3])){
+//						loginStatus.setText("Login successful.");
+//						selectCategory(event); 
+//						hasName = true; 
+//					}
+//				}	
+//				
+//				// login failed (file does not contain login info) 
+//				if(!hasName)
+//					loginStatus.setText("Login failed. Please try again or create account.");
+//				
+//			}else{
+//				loginStatus.setText("Login failed. Please try again.");
+//			}	
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	           
+//    }
 	
 	/**
 	 * This method is responsible for creating the stage for a new user account. 
@@ -155,13 +155,31 @@ public class MainControllerv2 {
 		primaryStage.setTitle("Select Category");
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
 		Parent root = loader.load(); 
-		CategoryController category = loader.<CategoryController>getController(); 
-		category.setUserName(username.getText());
 		Scene scene = new Scene(root);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
+	}
+	
+	/**
+	 * This method will return user back to the login stage from the 'new account' stage 
+	 * @param event
+	 * @throws IOException
+	 */
+	public void back(ActionEvent event) throws IOException{
+		Stage primaryStage =  (Stage) ((Node) event.getSource()).getScene().getWindow();  
+		
+		// set title of the stage 
+		primaryStage.setTitle("Welcome to NBA Feeds!");
+		
+		// load the category scene file 
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));	
+		Parent root = loader.load(); 	
+		Scene scene = new Scene(root);
+		
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	/**
@@ -171,26 +189,116 @@ public class MainControllerv2 {
 	 * @param event
 	 * @throws Exception 
 	 */
-	public void createAccount(ActionEvent event) throws Exception{
+//	public void createAccount(ActionEvent event) throws Exception{
+//		// set boolean values to check for each entry 
+//		boolean hasUsername = false; 
+//		boolean hasPwd = false; 
+//		boolean hasFavoriteTeam = false; 
+//		boolean hasFavoritePlayer = false; 
+//		
+//		// store each respective entry and test to see if value was entered 
+//		String userName = newUsername.getText(); 
+//		if(!userName.equals(""))
+//			hasUsername = true; 
+//		
+//		String pwd = newPassword.getText();
+//		if(!pwd.equals(""))
+//			hasPwd = true; 
+//		
+//		String favTeam = favoriteTeam.getText(); 
+//		if(!favTeam.equals(""))
+//			hasFavoriteTeam = true; 
+//		
+//		String favPlayer = favoritePlayer.getText(); 
+//		if(!favPlayer.equals(""))
+//			hasFavoritePlayer = true; 
+//		
+//		// if values are entered for each field, then check to see if user info file 
+//		// contains the same username and handle appropriately, otherwise prompt the 
+//		// user to enter value for each field 
+//		if(hasUsername && hasPwd && hasFavoriteTeam && hasFavoritePlayer){
+//			try {
+//				// read in file containing all the users' info 
+//				FileWriter fw = new FileWriter("resources/username2.txt",true);
+//				BufferedWriter bw = new BufferedWriter(fw);
+//				PrintWriter out = new PrintWriter(bw);
+//
+//				// initializes variables for reading in name 
+//				String name = null; 
+//				String[] userArray; 
+//				boolean hasName = false; 
+//				Scanner input = new Scanner(new File("resources/username2.txt"));
+//
+//
+//				// read through users' info file and test for to see if file contains enter login info 
+//				if(input.hasNextLine()){
+//					while(input.hasNextLine()){
+//						name = input.nextLine();
+//						userArray = name.split(" "); 
+//						// login successful (file contains login info) 
+//						if(userName.equals(userArray[1])){
+//							accountStatus.setText("Username already exists. Try again.");
+//							hasName = true; 
+//							break; 
+//						}
+//					}	
+//
+//					if(!hasName){
+//						out.print("\nUsername: " + userName + " " + "Pwd: " + pwd + " " + "Team: " + favTeam 
+//								+ " " + "Player: " + favPlayer);
+//						accountStatus.setText("Account created.");
+//						selectCategory(event);
+//					}
+//
+//
+//
+//				}else{
+//					out.print("Username: " + userName + " " + "Pwd: " + pwd + " " + "Team: " + favTeam 
+//							+ " " + "Player: " + favPlayer);
+//					accountStatus.setText("Account created.");
+//					selectCategory(event);
+//				}	
+//
+//				out.close(); 
+//				//			
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		else{
+//			accountStatus.setText("Please enter values for each field.");
+//		}
+//	}
+	
+	
+	/**
+	 * This method is responsible for handling how the user creates a new account. 
+	 * It will check to see if entered info is valid and if the chosen username already 
+	 * exists. 
+	 * @param event
+	 * @throws Exception 
+	 */
+	public void createAccountv2(ActionEvent event) throws Exception{
 		// set boolean values to check for each entry 
 		boolean hasUsername = false; 
 		boolean hasPwd = false; 
 		boolean hasFavoriteTeam = false; 
 		boolean hasFavoritePlayer = false; 
-		
+
 		// store each respective entry and test to see if value was entered 
 		String userName = newUsername.getText(); 
 		if(!userName.equals(""))
 			hasUsername = true; 
-		
+
 		String pwd = newPassword.getText();
 		if(!pwd.equals(""))
 			hasPwd = true; 
-		
+
 		String favTeam = favoriteTeam.getText(); 
 		if(!favTeam.equals(""))
 			hasFavoriteTeam = true; 
-		
+
 		String favPlayer = favoritePlayer.getText(); 
 		if(!favPlayer.equals(""))
 			hasFavoritePlayer = true; 
@@ -199,59 +307,21 @@ public class MainControllerv2 {
 		// contains the same username and handle appropriately, otherwise prompt the 
 		// user to enter value for each field 
 		if(hasUsername && hasPwd && hasFavoriteTeam && hasFavoritePlayer){
-			try {
-				// read in file containing all the users' info 
-				FileWriter fw = new FileWriter("resources/username2.txt",true);
-				BufferedWriter bw = new BufferedWriter(fw);
-				PrintWriter out = new PrintWriter(bw);
-
-				// initializes variables for reading in name 
-				String name = null; 
-				String[] userArray; 
-				boolean hasName = false; 
-				Scanner input = new Scanner(new File("resources/username2.txt"));
-
-
-				// read through users' info file and test for to see if file contains enter login info 
-				if(input.hasNextLine()){
-					while(input.hasNextLine()){
-						name = input.nextLine();
-						userArray = name.split(" "); 
-						// login successful (file contains login info) 
-						if(userName.equals(userArray[1])){
-							accountStatus.setText("Username already exists. Try again.");
-							hasName = true; 
-							break; 
-						}
-					}	
-
-					if(!hasName){
-						out.print("\nUsername: " + userName + " " + "Pwd: " + pwd + " " + "Team: " + favTeam 
-								+ " " + "Player: " + favPlayer);
-						accountStatus.setText("Account created.");
-						selectCategory(event);
-					}
-
-
-
-				}else{
-					out.print("Username: " + userName + " " + "Pwd: " + pwd + " " + "Team: " + favTeam 
-							+ " " + "Player: " + favPlayer);
-					accountStatus.setText("Account created.");
-					selectCategory(event);
-				}	
-
-				out.close(); 
-				//			
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(loginModel.isUsername(userName)){
+				accountStatus.setText("Username already exists. Try again.");
+			}
+			else{
+				// insert new user credentials and info into database (accounts table) 
+				loginModel.addNewAccount(userName, pwd, favTeam, favPlayer);
+				accountStatus.setText("Account created.");
+				back(event);
 			}
 		}
 		else{
 			accountStatus.setText("Please enter values for each field.");
 		}
 	}
+	
 	
 	/**
 	 * Return the new username entered. 
