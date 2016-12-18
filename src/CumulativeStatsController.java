@@ -103,8 +103,6 @@ public class CumulativeStatsController implements Initializable{
 		primaryStage.setTitle("Select Category");
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
 		Parent root = loader.load(); 
-		CategoryController category = loader.<CategoryController>getController(); 
-		category.setUserName(username);
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);

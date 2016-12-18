@@ -44,7 +44,6 @@ public class TeamStandings {
 		}
 	}
 	
-	
 	/**
 	 * This method will take in the rank of a team and return the team's info (name, record, etc.)
 	 * @param rank
@@ -53,10 +52,6 @@ public class TeamStandings {
 	public String[] getTeamInfo(int rank){
 		return teamStatsMap.get(rank);
 	}
-	
-	
-	
-	
 	
 		 
 }

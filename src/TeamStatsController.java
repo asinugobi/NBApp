@@ -114,11 +114,7 @@ public class TeamStatsController implements Initializable{
 
 		// load the category scene file 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
-		Parent root = loader.load(); 
-		// pass username info 
-		CategoryController category = loader.<CategoryController>getController(); 
-		category.setUserName(username);
-		
+		Parent root = loader.load();
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
