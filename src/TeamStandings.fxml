@@ -16,5 +16,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Button fx:id="leaguestandings" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#leaguestandings" prefHeight="27.0" prefWidth="110.0" text="testing" />
    </children>
 </AnchorPane>
