@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  * @author chimezie
  *
  */
-public class CumulativeStatsController implements Initializable{
+public class ScoreBoardController implements Initializable{
 
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
@@ -38,7 +38,7 @@ public class CumulativeStatsController implements Initializable{
 	private ArrayList<Player> top5Assists;
 	private CumulativePlayerStats stats;
 
-	public CumulativeStatsController() throws MalformedURLException, IOException {
+	public ScoreBoardController() throws MalformedURLException, IOException {
 		top5Rebounds =  new ArrayList<Player>();
 		top5Scores = new ArrayList<Player>();
 		top5Steals = new ArrayList<Player>();
