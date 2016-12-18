@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -20,7 +21,11 @@ import javafx.stage.Stage;
 
 public class PlayerInjuriesController implements Initializable {
 	
-	private String username = null; 
+	private LoginModel loginModel = new LoginModel(); 
+	private String username = loginModel.getUsername(); 
+	private String favoritePlayer = loginModel.getPlayer(username); 
+	private String favoriteTeam = loginModel.getTeam(username); 
+	
 	private PlayerInjuries hurt ;
 	@FXML private TableView<Player1> injury;
 	@FXML private TableColumn<Player1, String> name;
@@ -28,8 +33,8 @@ public class PlayerInjuriesController implements Initializable {
 	private ArrayList<Player1> team;
 	private ArrayList<Player1> individual;
 	
-	public PlayerInjuriesController() throws MalformedURLException, IOException {
-		hurt = new PlayerInjuries ("Will Barton", "Spurs");
+	public PlayerInjuriesController() throws MalformedURLException, IOException, SQLException {
+		hurt = new PlayerInjuries (favoritePlayer, favoriteTeam);
 		team =  new ArrayList();
 		individual = new ArrayList();
 	}
@@ -37,10 +42,10 @@ public class PlayerInjuriesController implements Initializable {
 	private List<Player1> getTeamList(){
 		if (team.isEmpty()){
 			for (String name: hurt.getTeam()) {
-				team.add( new Player1(name +": " + hurt.getAllInjuries().get(name))  );
+				team.add( new Player1(name +": \n" + hurt.getAllInjuries().get(name))  );
 			}
 			if (team.isEmpty()) {
-				team.add( new Player1("Your favorite team is fine.") );
+				team.add( new Player1("All players in " + favoriteTeam + " are fine.") );
 			}
 		}
 		return team;
@@ -50,7 +55,7 @@ public class PlayerInjuriesController implements Initializable {
 		String thePlayer = hurt.getPlayer() ;
 		if (individual.isEmpty()){
 			if (hurt.getPlayer() == null) {
-				individual.add(new Player1("Your favorite player is fine.")) ;
+				individual.add(new Player1(favoritePlayer + " is fine.")) ;
 			} else {
 				individual.add( new Player1(thePlayer +": " + hurt.getAllInjuries().get(thePlayer)) );
 			}

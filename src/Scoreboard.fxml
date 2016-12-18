@@ -15,7 +15,7 @@
             <Font size="24.0" />
          </font>
       </TextArea>
-      <TextArea layoutX="196.0" layoutY="55.0" prefHeight="131.0" prefWidth="164.0">
+      <TextArea fx:id="away" layoutX="196.0" layoutY="55.0" prefHeight="131.0" prefWidth="164.0">
          <font>
             <Font size="24.0" />
          </font>
