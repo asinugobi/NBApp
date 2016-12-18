@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -11,12 +9,17 @@ import java.util.ArrayList;
  *
  */
 public class FullGameSchedule {
-	private FileDownloader dl;
-	private FileReaderv3  fullGameSchedule; 
 	
+	private FileDownloader dl; // used for downloading file 
+	private FileReaderv3  fullGameSchedule; // used for reading in data 
 	
+	/**
+	 * Constructor for initializing objects. Download the data file and read into respective object. 
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public FullGameSchedule() throws MalformedURLException, IOException{
-		dl = new FileDownloader("resources/");
+		dl = new FileDownloader("resources/"); 
 		dl.fullSchedule();
 		fullGameSchedule = new FileReaderv3("resources/full_game_schedule.csv");
 	}
@@ -35,20 +38,15 @@ public class FullGameSchedule {
 	 * @return full schedule of games for the season 
 	 */
 	public ArrayList<String[]> getSeasonGames(String team){
-		
 		ArrayList<String[]> teamSchedule = new ArrayList<String[]>(); // create a list of games
 		String[] gameInfoArray; // store game info as an array 
-		
 		// store all games of the 'team' into a list 
 		for(String gameInfo : fullGameSchedule.getLines()){
 			gameInfoArray = gameInfo.split(","); 
-			
 			if(gameInfoArray[6].equalsIgnoreCase(team) || 
 					gameInfoArray[10].equalsIgnoreCase(team))
 				teamSchedule.add(gameInfoArray);
 		}
-		
-		
 		return teamSchedule; 
 	}
 	
@@ -64,15 +62,10 @@ public class FullGameSchedule {
 		// store all games of the 'team' into a list 
 		for(String gameInfo : fullGameSchedule.getLines()){
 			gameInfoArray = gameInfo.split(","); 
-			
 			if(gameInfoArray[1].equalsIgnoreCase(date))
 				games.add(gameInfoArray);
 		}
-		
 		return games; 
 	}
-
-	
-	
 	
 }

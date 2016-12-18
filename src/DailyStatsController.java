@@ -1,3 +1,7 @@
+/**
+ * This controller class represents the handling of the GUI interface for the Daily Player Stats Category 
+ * @author obinnaasinugo
+ */
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -5,8 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,11 +25,11 @@ import javafx.stage.Stage;
 
 public class DailyStatsController implements Initializable {
 
-	
+	// load user info into controller
 	private LoginModel loginModel = new LoginModel(); 
-	private String username = loginModel.getUsername(); 
-	private String favoritePlayer = loginModel.getPlayer(username); 
-	private String favoriteTeam = loginModel.getTeam(username); 
+	private String username; 
+	private String favoritePlayer; 
+	private String favoriteTeam; 
 	
 	@FXML private TableView<DailyPlayer> game;
 	@FXML private TableColumn<DailyPlayer, String> points;
@@ -34,21 +37,26 @@ public class DailyStatsController implements Initializable {
 	@FXML private TableColumn<DailyPlayer, String> rebounds;
 	@FXML private TableColumn<DailyPlayer, String> steals;
 	@FXML private TableColumn<DailyPlayer, String> blocks;
+	@FXML private Label activityLabel; 
 	
 	private DailyPlayerStats dailyStats; 
 	private ArrayList<DailyPlayer> statsList; 
 	private boolean didNotPlay;
-//	private String player = "Chris Paul";
-	private LoginModel db = new LoginModel(); 
-//	private String favoritePlayer = db.getPlayer(username); 
-//	private String favoritePlayer = "Chris Paul"; 
 	
+	/**
+	 * Initialize constructor with appropriate variables and load the user's info 
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	public DailyStatsController() throws MalformedURLException, IOException, SQLException {
 		dailyStats = new DailyPlayerStats(); 
 		statsList = new ArrayList<DailyPlayer>(); 
+		username = loginModel.getUsername(); 
+		favoritePlayer = loginModel.getPlayer(username); 
+		favoriteTeam = loginModel.getTeam(username); 
 	}
-	
-	
+
 	/**
 	 * A class to get daily player's stats object with information pertaining to each game (points, rebounds, assists, blocks, steals) 
 	 */
@@ -68,7 +76,6 @@ public class DailyStatsController implements Initializable {
 			this.blocks = new SimpleStringProperty(blocks);
 		}
 	
-
 		public String getPoints() {
 			return points.get();
 		}
@@ -91,14 +98,14 @@ public class DailyStatsController implements Initializable {
 
 	}
 	
-	
-	
 	public void active(){
 		didNotPlay = false; 
+		activityLabel.setText(favoritePlayer + ": ACTIVE");
 	}
 	
 	public void notActive(){
 		didNotPlay = true; 
+		activityLabel.setText(favoritePlayer + ": INACTIVE");
 	}
 	
 	public boolean activity(){
@@ -132,9 +139,8 @@ public class DailyStatsController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
 		Parent root = loader.load(); 
 		// pass username info 
-		CategoryController category = loader.<CategoryController>getController(); 
-		category.setUserName(username);
-		
+//		CategoryController category = loader.<CategoryController>getController(); 
+//		category.setUserName(username);	
 		Scene scene = new Scene(root);
 		
 		primaryStage.setScene(scene);

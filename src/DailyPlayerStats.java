@@ -1,33 +1,46 @@
-
-
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
- * This class is responsible for tracking and returning information regarding a player's daily stats 
+ * This class is responsible for tracking and returning information regarding a player's daily stats.
  * @author obinnaasinugo
  *
  */
 public class DailyPlayerStats {
-	private FileDownloader dl;
-	FileReaderv3 dailyPlayerStats; // parsed file of daily player stats 
-	HashMap<String, String[]> playersStatsMap; // map of players to their respective stats
-	
-	
+	private FileDownloader dl; // used to download file 
+	private FileReaderv3 dailyPlayerStats; // parsed file of daily player stats 
+	private HashMap<String, String[]> playersStatsMap; // map of players to their respective stats
+	private String date; // used to store today's date 
+
 	/**
-	 * This is the constructor for creating an DailyPlayerStats object. It will initialize the
-	 * FileReaderv3 and String objects. 
+	 * This is the constructor for creating an DailyPlayerStats object. It will initialize the appropriate objects
+	 * and instance variables. 
 	 * @param player
 	 * @throws IOException 
 	 * @throws MalformedURLException 
 	 */
 	public DailyPlayerStats() throws MalformedURLException, IOException{
 		dl = new FileDownloader("resources/");
-		dl.dailyPlayer("20161030");
+		date = getDate(); // get today's date 
+		dl.dailyPlayer(date); // store today's date 
 		dailyPlayerStats = new FileReaderv3("resources/daily_player_stats.csv");
 		playersStatsMap = new HashMap<String, String[]>(); // initialize stats map 
 		makePlayersDataMap(); 
+	}
+	
+	/**
+	 * Method will return today's date
+	 * @return current date 
+	 */
+	public String getDate(){
+		// store today's date 
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		Date dateobj = new Date();
+		return df.format(dateobj); 
 	}
 	
 	/**
@@ -49,7 +62,6 @@ public class DailyPlayerStats {
 		for(String playerInfo : dailyPlayerStats.getLines()){
 			playerData = playerInfo.split(","); // split the string into array 
 			playerName = playerData[5] + " " + playerData[4]; // store player's name (first last)
-//			System.out.println(playerName);
 			
 			// if player is not in the map, store their data 
 			if(!playersStatsMap.containsKey(playerName)){
@@ -57,10 +69,8 @@ public class DailyPlayerStats {
 			}
 			else
 				continue; 
-			
 		}
 	}
-	
 	
 	/**
 	 * This method is responsible for returning the map of players to their stats. 
@@ -88,9 +98,6 @@ public class DailyPlayerStats {
 			playerStats[4] = tempStats[45]; // store blocks
 			return playerStats; 
 		}
-		
 		return null; 
 	}
-	
-
 }

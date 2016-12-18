@@ -9,11 +9,7 @@
 
 <AnchorPane prefHeight="334.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FullGameScheduleController">
    <children>
-      <ImageView fitHeight="334.0" fitWidth="387.0" layoutX="27.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/CHI-1.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="iv1" fitHeight="334.0" fitWidth="387.0" layoutX="27.0" opacity="0.34" pickOnBounds="true" preserveRatio="true" />
       <DatePicker layoutX="89.0" layoutY="167.0" promptText="Look up a game..." />
       <Text layoutX="74.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Season Schedule: " wrappingWidth="194.0">
          <font>
