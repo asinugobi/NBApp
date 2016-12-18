@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 /**
  * This class will control the TeamStats Panel and show top5 players 
  * @author Eddie
@@ -26,7 +28,10 @@ import javafx.stage.Stage;
  */
 public class TeamStatsController implements Initializable{
 
-	private String username = null; 
+	private LoginModel loginModel = new LoginModel(); 
+	private String username = loginModel.getUsername(); 
+	private String favoritePlayer = loginModel.getPlayer(username); 
+	private String favoriteTeam = loginModel.getTeam(username); 
 	
 	private TeamStats theTeam;
 	@FXML private TableView<Player> top5;
@@ -38,8 +43,8 @@ public class TeamStatsController implements Initializable{
 	private ArrayList<Player> top5Blocks;
 	private ArrayList<Player> top5Assists;
 
-	public TeamStatsController() throws MalformedURLException, IOException {
-		theTeam = new TeamStats("Spurs");
+	public TeamStatsController() throws MalformedURLException, IOException, SQLException {
+		theTeam = new TeamStats(favoriteTeam);
 		top5Rebounds =  new ArrayList();
 		top5Scores = new ArrayList();
 		top5Steals = new ArrayList();

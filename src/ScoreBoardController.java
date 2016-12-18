@@ -27,7 +27,9 @@ import javafx.stage.Stage;
  *
  */
 public class ScoreBoardController implements Initializable{
+
 	private String username = null;
+
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
 	@FXML private TableColumn<Player, Double> homescore;
@@ -98,26 +100,26 @@ public class ScoreBoardController implements Initializable{
   */
 	public static class Player {
 
-		private final SimpleStringProperty name;
-		private final SimpleDoubleProperty homescore;
-		private final SimpleDoubleProperty awayscore;
+//		private final SimpleStringProperty name;
+//		private final SimpleDoubleProperty homescore;
+//		private final SimpleDoubleProperty awayscore;
 
-		private Player(String name, Double avg) {
-			this.name = new SimpleStringProperty(name);
-			this.avg = new SimpleDoubleProperty(avg);
-		}
-
-		public String getName() {
-			return name.get();
-		}
+//		private Player(String name, Double avg) {
+//			this.name = new SimpleStringProperty(name);
+//			this.avg = new SimpleDoubleProperty(avg);
+//		}
+//
+//		public String getName() {
+//			return name.get();
+//		}
 
 		// public void setFirstName(String fName) {
 		// 	name.set(fName);
 		// }
 
-		public Double getAvg() {
-			return avg.get();
-		}
+//		public Double getAvg() {
+//			return avg.get();
+//		}
 
 		// public void setLastName(String fName) {
 		// 	avg.set(fName);

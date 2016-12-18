@@ -35,10 +35,16 @@ public class CumulativePlayerStatsTest {
 		assertEquals("The column for points is",47, num);
 	}
 	
+	@Test // should i rewrite in order to get an actual test
+	public void testGetStatTopTen(){
+
+		stats.getTopTen("points");
+
+	}
+
 //	@Test // should i rewrite in order to get an actual test
 //	public void testGetStatTopTen(){
 //		stats.getTopTen("points");
 //		stats.getTopTen(null);
 //	}
-
 }
