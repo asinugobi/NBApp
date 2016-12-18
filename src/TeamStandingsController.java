@@ -37,16 +37,19 @@ public class TeamStandingsController implements Initializable{
 
 	public TeamStandingsController() throws MalformedURLException, IOException {
 		stats = new TeamStandings();
+		leagueStandings = new ArrayList<Team>();
 	}
 
 	public ArrayList<Team> getLeagueStandings(){
 		String[] temp = stats.getTeamRankings();
-
+		
 
 		for(int i=0; i< temp.length; i++){
-
+			
 			leagueStandings.add(new Team(temp[i]) );
 		}
+		System.out.println(temp[1]);
+		System.out.println(leagueStandings.get(0));
 		return leagueStandings;
 	}
 
