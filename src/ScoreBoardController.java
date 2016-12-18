@@ -26,8 +26,8 @@ import javafx.stage.Stage;
  * @author chimezie
  *
  */
-public class CumulativeStatsController implements Initializable{
-
+public class ScoreBoardController implements Initializable{
+	private String username = null; 
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
 	@FXML private TableColumn<Player, Double> avg;
@@ -38,7 +38,7 @@ public class CumulativeStatsController implements Initializable{
 	private ArrayList<Player> top5Assists;
 	private CumulativePlayerStats stats;
 
-	public CumulativeStatsController() throws MalformedURLException, IOException {
+	public ScoreBoardController() throws MalformedURLException, IOException {
 		top5Rebounds =  new ArrayList<Player>();
 		top5Scores = new ArrayList<Player>();
 		top5Steals = new ArrayList<Player>();
@@ -121,6 +121,15 @@ public class CumulativeStatsController implements Initializable{
 		// 	avg.set(fName);
 		// }
 
+	}
+	
+	/**
+	 * This method will handle passing through the username info so it can be used to query the database 
+	 * @param name
+	 */
+	public void setUserName(String name){
+		username = name; 
+		System.out.println(username);
 	}
 
   // initializes table_view
