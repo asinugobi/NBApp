@@ -3,25 +3,35 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * This class test if the FileReaderv3 can read in data from specified file.
+ * @author Eddie
+ *
+ */
 public class FileReaderv3Test {
-
-//	private FileReaderv3 testFile;
 	
-//	@Before 
-//	public void setupFile(){
-//		testFile = new FileReaderv3("MYSPORTSFEEDS-CUMULATIVE_PLAYER_STATS-NBA-20152016REGULAR-1.csv"); 
-//	}
+	private FileReaderv3 test;
+	
+	@Before
+	public void setUpFileReader() {
+		test = new FileReaderv3("resources/cumulative_player_stats.csv") ;
+	}
 	
 	@Test
-	public void test() {
-		File testFile = new File("MYSPORTSFEEDS-DAILY_PLAYER_STATS-NBA-20152016REGULAR-20151028.csv"); 
-		
-		
+	public void testReadFile() {
+		ArrayList<String> lines = test.getLines();
+		assertNotNull("Lines cannot be null, the FileReader should read in some data", lines);
+	}
+	
+	@Test
+	public void testReadIn() {
+		File testFile = new File("resources/cumulative_player_stats.csv"); 	
 		try(Scanner in = new Scanner(testFile); 
 				PrintWriter out = new PrintWriter("output-test.txt"); 
 				){
@@ -34,8 +44,6 @@ public class FileReaderv3Test {
 			} catch (Exception e){
 				e.printStackTrace();
 			}
-		
 		assertNotNull("File cannot be null", testFile);
 	}
-
 }

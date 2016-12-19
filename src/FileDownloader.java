@@ -42,6 +42,27 @@ public class FileDownloader {
 		download(src, targetDirectory, fileName);
 	}
 	/**
+	 * @return the statsName
+	 */
+	public String getStatsName() {
+		return statsName;
+	}
+
+	/**
+	 * @param statsName the statsName to set
+	 */
+	public void setStatsName(String statsName) {
+		this.statsName = statsName;
+	}
+
+	/**
+	 * @return the targetDirectory
+	 */
+	public String getTargetDirectory() {
+		return targetDirectory;
+	}
+
+	/**
 	 * This method will download Full Game Schedule with "csv" format.
 	 * @throws MalformedURLException
 	 * @throws IOException
@@ -191,15 +212,6 @@ public class FileDownloader {
 		Path targetPath = new File(targetDirectory + fileName).toPath();
 		Files.copy(is, targetPath, StandardCopyOption.REPLACE_EXISTING);
 		
-
-//		// This block is used to read in the file while a request successes
-//				int numCharsRead;
-//				char[] charArray = new char[1024];
-//				StringBuffer sb = new StringBuffer();
-//				while ((numCharsRead = isr.read(charArray)) > 0) {
-//					sb.append(charArray, 0, numCharsRead);
-//				}
-//				String result = sb.toString();
 
 		return targetPath;
 	}

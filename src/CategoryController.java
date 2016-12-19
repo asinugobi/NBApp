@@ -78,12 +78,12 @@ public class CategoryController {
 			standings.setUserName(username);
 			break; 
 			
-		case "Scoreboard": 
-			FXMLLoader loaderScoreBoard = new FXMLLoader(getClass().getResource(category + ".fxml"));	
-			root = loaderScoreBoard.load(); 
-			ScoreBoardController scoreboard = loaderScoreBoard.<ScoreBoardController>getController(); 
-			scoreboard.setUserName(username);
-			break;
+//		case "Scoreboard": 
+//			FXMLLoader loaderScoreBoard = new FXMLLoader(getClass().getResource(category + ".fxml"));	
+//			root = loaderScoreBoard.load(); 
+//			ScoreBoardController scoreboard = loaderScoreBoard.<ScoreBoardController>getController(); 
+//			scoreboard.setUserName(username);
+//			break;
 			
 		case "FullGameSchedule": 
 			FXMLLoader loaderFullSchedule = new FXMLLoader(getClass().getResource(category + ".fxml"));	

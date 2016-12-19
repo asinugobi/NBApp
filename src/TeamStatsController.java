@@ -212,9 +212,9 @@ public class TeamStatsController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//        name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
-		//        avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
-		//        top5.getItems().setAll(getPlayerList());
+		        name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
+		        avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
+		        top5.getItems().setAll(getScoreList());
 	}
 
 	public void setUserName(String username) {
