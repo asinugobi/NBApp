@@ -208,6 +208,10 @@ public class CumulativeStatsController implements Initializable{
   // initializes table_view
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		top5.setEditable(true);
+		name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
+		avg.setCellValueFactory(new PropertyValueFactory<Player, Double>("avg"));
+		top5.getItems().setAll(getScoreList());
 		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
 		Image image = new Image(imageName.toURI().toString());
 		// simple displays ImageView the image as is
