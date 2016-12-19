@@ -1,0 +1,25 @@
+NBA Feeds Project Summary
+Team Members: Obi Asinugo, Emmanuel Chimezie, Eddie Tsai
+
+NBA Feeds is a desktop java application that displays statistical information
+about an NBA fan's favorite player and team, as well as the league in general.
+The application leverages the MySportsFeeds API (https://www.mysportsfeeds.com/).
+
+Actual Work Breakdown:
+
+Obi developed the login and database system to track user accounts and preferences
+of players and teams. He implemented two modules, daily player stats and full
+game schedule. For these two modules, he implemented the full sequence from
+parsing the data, writing the controller files, and creating the GUI for both
+modules. He laid out the overall structure for the platform.  He implemented
+a system to dynamically generate background and icon images to match the user’s
+team preference.
+
+Emmanuel developed two modules cumulative player stats and team standings. He
+implemented the full sequence from parsing the data, writing the controller files,
+and creating the GUI for both modules. He also wrote the user manual.
+
+Eddie worked on two modules, player injuries and team stats. He implemented the
+full sequence for these modules from parsing the data, writing the controller
+files, and creating the GUI for both modules. He also wrote the FileDownloader
+module which pulls the newest version of the csv files from the MySportsFeeds API. 

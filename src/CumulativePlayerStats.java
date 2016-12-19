@@ -6,20 +6,27 @@
  */
 
  // import statements
- import java.util.*;
+ import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.*;
 
  public class CumulativePlayerStats{
    // instance variables
    FileReaderv3 cumulativePlayerStats; // parsed file of daily player stats
  	 HashMap<String, String[]> playersStatsMap; // map of players to their respective stats
+ 	private FileDownloader fd ;
 
 
    	/**
    	 * This is the constructor for creating an CumulativePlayerStats object.
      * It will initialize the FileReaderv3 and String objects.
+   	 * @throws IOException 
+   	 * @throws MalformedURLException 
    	 */
-   	public CumulativePlayerStats(){
-   		cumulativePlayerStats = new FileReaderv3("resources/MYSPORTSFEEDS-CUMULATIVE_PLAYER_STATS-NBA-20152016REGULAR.csv");
+   	public CumulativePlayerStats() throws MalformedURLException, IOException{
+   		fd = new FileDownloader("resources/");
+   		fd.cumulativePlayers();
+   		cumulativePlayerStats = new FileReaderv3("resources/cumulative_player_stats.csv");
    		playersStatsMap = new HashMap<String, String[]>(); // initialize stats map
    		makePlayersDataMap();
    	}
