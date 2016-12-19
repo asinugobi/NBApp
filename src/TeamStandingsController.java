@@ -2,14 +2,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.application.Application;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +21,6 @@ import javafx.stage.Stage;
  *
  */
 public class TeamStandingsController implements Initializable{
-
-	private String username = null;
 
 	@FXML private TableView<Team> top5;
 	@FXML private TableColumn<Team, String> name;
@@ -48,8 +40,7 @@ public class TeamStandingsController implements Initializable{
 			
 			leagueStandings.add(new Team(temp[i]) );
 		}
-//		System.out.println(temp[1]);
-//		System.out.println(leagueStandings.get(0));
+
 		return leagueStandings;
 	}
 
@@ -100,8 +91,8 @@ public class TeamStandingsController implements Initializable{
   // initializes table_view
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// top5.setEditable(true);
-		// name.setCellValueFactory(new PropertyValueFactory<Team, String>("name"));
-		// top5.getItems().setAll(getLeagueStandings());
+		 top5.setEditable(true);
+		 name.setCellValueFactory(new PropertyValueFactory<Team, String>("name"));
+		 top5.getItems().setAll(getLeagueStandings());
 	}
 }

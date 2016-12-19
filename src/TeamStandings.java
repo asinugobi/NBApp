@@ -1,25 +1,30 @@
-
-
 import java.util.HashMap;
-import java.util.Formatter;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.Arrays;
 
 /**
  * This class is responsible for evaluating data pertaining to
  * the overall standings, conference team standings, division
  * team standings, and playoff team standings.
- * @author obinnaasinugo
+ * @author chimezie
  *
  */
 public class TeamStandings {
 
 	private FileReaderv3 teamStandings;
 	private HashMap<String, String[]> teamStatsMap;
+	private FileDownloader fd ;
 
 	/**
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 *
 	 */
-	public TeamStandings(){
-		teamStandings = new FileReaderv3("resources/MYSPORTSFEEDS-OVERALL_TEAM_STANDINGS-NBA-20152016REGULAR.csv");
+	public TeamStandings() throws MalformedURLException, IOException{
+		fd = new FileDownloader("resources/");
+		fd.allStandings();
+		teamStandings = new FileReaderv3("resources/overall_team_standings.csv");
 		teamStatsMap = new HashMap<String, String[]>();
 		makeTeamStandingsMap();
 	}
@@ -62,11 +67,15 @@ public class TeamStandings {
 
 		for(String team : teamStatsMap.keySet()){
 			temp = teamStatsMap.get(team);
-			winLoss = temp[55] +"-"+ temp[56];
+			winLoss = temp[70] +"-"+ temp[71];
 			rank = temp[5];
-			rankings[i] = String.format("%1$-2s %2$-24s %3$-5s", rank, team, winLoss);
+			if(temp[5].length() == 1){
+				rank = "0"+rank;
+			}
+			rankings[i] = String.format("%1$-2s.) %3$-21s %2$-5s", rank, team, winLoss);
 			i++;
 		}
+		Arrays.sort(rankings);
 
 		return rankings;
 	}
