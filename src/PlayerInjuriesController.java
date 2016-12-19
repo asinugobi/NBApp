@@ -118,6 +118,9 @@ public class PlayerInjuriesController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		injury.setEditable(true);
+		name.setCellValueFactory(new PropertyValueFactory<Player1, String>("name"));
+		injury.getItems().setAll(getIndividual());
 		
 	}
 

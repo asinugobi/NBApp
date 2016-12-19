@@ -212,10 +212,15 @@ public class TeamStatsController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
+		avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
+		top5.getItems().setAll(getScoreList());
+
 		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
 		Image image = new Image(imageName.toURI().toString());
 		// simple displays ImageView the image as is
 		ivBack.setImage(image);
+
 	}
 
 
