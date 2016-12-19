@@ -157,8 +157,7 @@ public class DailyStatsController implements Initializable {
 		rebounds.setCellValueFactory(new PropertyValueFactory<DailyPlayer, String>("rebounds"));
 		steals.setCellValueFactory(new PropertyValueFactory<DailyPlayer, String>("steals"));
 		blocks.setCellValueFactory(new PropertyValueFactory<DailyPlayer, String>("blocks"));
-		game.getItems().setAll(getStats());
-		printUser(); 
+		game.getItems().setAll(getStats()); 
 		
 	}
 
@@ -166,10 +165,6 @@ public class DailyStatsController implements Initializable {
 		// TODO Auto-generated method stub
 		this.username = username; 
 		
-	}
-	
-	public void printUser(){
-		System.out.println("Username: " + username + "\nFavorite Player: " + favoritePlayer + "\nFavorite Team: " + favoriteTeam);
 	}
 	
 }

@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 /**
  * This class will control the Cumualtive Stats Panel
@@ -24,12 +28,20 @@ public class TeamStandingsController implements Initializable{
 
 	@FXML private TableView<Team> top5;
 	@FXML private TableColumn<Team, String> name;
+	@FXML private ImageView ivBack; 
 	private ArrayList<Team> leagueStandings;
 	private TeamStandings stats;
+	private String username ;
+	private String favoritePlayer; 
+	private String favoriteTeam;  
+	private LoginModel loginModel = new LoginModel(); 
 
-	public TeamStandingsController() throws MalformedURLException, IOException {
+	public TeamStandingsController() throws MalformedURLException, IOException, SQLException {
 		stats = new TeamStandings();
 		leagueStandings = new ArrayList<Team>();
+		username = loginModel.getUsername(); 
+		favoritePlayer = loginModel.getPlayer(username); 
+		favoriteTeam = loginModel.getTeam(username);
 	}
 
 	public ArrayList<Team> getLeagueStandings(){
@@ -95,5 +107,9 @@ public class TeamStandingsController implements Initializable{
 		 top5.setEditable(true);
 		 name.setCellValueFactory(new PropertyValueFactory<Team, String>("name"));
 		 top5.getItems().setAll(getLeagueStandings());
+		 File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
+		 Image image = new Image(imageName.toURI().toString());
+		 // simple displays ImageView the image as is
+		 ivBack.setImage(image);
 	}
 }

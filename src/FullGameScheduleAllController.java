@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class FullGameScheduleAllController implements Initializable {
@@ -26,6 +29,8 @@ public class FullGameScheduleAllController implements Initializable {
 	@FXML private TableColumn<Game, String> date;
 	@FXML private TableColumn<Game, String> time;
 	@FXML private TableColumn<Game, String> location;
+	@FXML private ImageView ivBack; 
+	
 	private FullGameSchedule fullSchedule;
 	private ArrayList<Game> season; 
 	
@@ -123,5 +128,10 @@ public class FullGameScheduleAllController implements Initializable {
 		time.setCellValueFactory(new PropertyValueFactory<Game, String>("time"));
 		location.setCellValueFactory(new PropertyValueFactory<Game, String>("location"));
 		schedule.getItems().setAll(getAllGames());
+		
+		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
+		Image image = new Image(imageName.toURI().toString());
+		// simple displays ImageView the image as is
+		ivBack.setImage(image);
 	}
 }
