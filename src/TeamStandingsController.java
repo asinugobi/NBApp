@@ -48,8 +48,6 @@ public class TeamStandingsController implements Initializable{
 			
 			leagueStandings.add(new Team(temp[i]) );
 		}
-		System.out.println(temp[1]);
-		System.out.println(leagueStandings.get(0));
 		return leagueStandings;
 	}
 
@@ -62,7 +60,7 @@ public class TeamStandingsController implements Initializable{
 		FXMLLoader loaderStandings = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));
 		Parent root = loaderStandings.load();
 		CategoryController category = loaderStandings.<CategoryController>getController();
-		category.setUserName(username);
+		//category.setUserName(username);
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -111,8 +109,8 @@ public class TeamStandingsController implements Initializable{
   // initializes table_view
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// top5.setEditable(true);
-		// name.setCellValueFactory(new PropertyValueFactory<Team, String>("name"));
-		// top5.getItems().setAll(getLeagueStandings());
+		 top5.setEditable(true);
+		 name.setCellValueFactory(new PropertyValueFactory<Team, String>("name"));
+		 top5.getItems().setAll(getLeagueStandings());
 	}
 }

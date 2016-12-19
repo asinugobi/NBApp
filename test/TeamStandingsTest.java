@@ -1,6 +1,8 @@
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.*;
 
 import org.junit.Before;
@@ -11,7 +13,7 @@ public class TeamStandingsTest {
 	TeamStandings stats; // initialize object
 
 	@Before
-	public void setUp(){
+	public void setUp() throws MalformedURLException, IOException{
 		stats = new TeamStandings();
 	}
 
