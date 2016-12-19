@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * This class reads in a file that is specified.
- * @author obi asinugo
+ * @author obinnaasinugo
  *
  */
 public class FileReaderv3 {

@@ -22,4 +22,6 @@ and creating the GUI for both modules. He also wrote the user manual.
 Eddie worked on two modules, player injuries and team stats. He implemented the
 full sequence for these modules from parsing the data, writing the controller
 files, and creating the GUI for both modules. He also wrote the FileDownloader
-module which pulls the newest version of the csv files from the MySportsFeeds API. 
+module which pulls the newest version of the csv files from the MySportsFeeds API.
+
+The file is saved at https://github.com/cit-upenn/cit-591-projects-fall-2016-sports_feeds. To run the application, run the NBApp.java file to run the application.
