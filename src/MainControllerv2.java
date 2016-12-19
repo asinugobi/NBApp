@@ -20,42 +20,33 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * This controller class is responsible for handling the main login stage.
+ * @author obinnaasinugo
+ *
+ */
 public class MainControllerv2 {
+
+	// labels for stage 
+	@FXML private Label loginStatus;
+	@FXML private Label accountStatus;
+	@FXML private TextField username; 
+	@FXML private TextField password; 
+	@FXML private TextField favoriteTeam; 
+	@FXML private TextField favoritePlayer; 
+	@FXML private TextField newUsername; 
+	@FXML private TextField newPassword;
+	@FXML private TextField category;
 	
-	// 
-	private LoginModel loginModel = new LoginModel(); 
-//	public String user = null; 
+	private LoginModel loginModel = new LoginModel(); 	// used to access database info 
 	
-	@FXML 
-	private Label loginStatus;
-	
-	@FXML 
-	private Label accountStatus;
-	
-	@FXML 
-	private TextField username; 
-	
-	@FXML 
-	private TextField password; 
-	
-	@FXML 
-	private TextField favoriteTeam; 
-	
-	@FXML 
-	private TextField favoritePlayer; 
-	
-	@FXML 
-	private TextField newUsername; 
-	
-	@FXML 
-	private TextField newPassword;
-	
-	@FXML 
-	private TextField category;
-	
+	/**
+	 * Login through database at login stage. 
+	 * @param event
+	 * @throws Exception
+	 */
 	public void login_v2(ActionEvent event) throws Exception{
 		try {
 			if (loginModel.isLogin(username.getText(), password.getText())){
@@ -321,7 +312,6 @@ public class MainControllerv2 {
 			accountStatus.setText("Please enter values for each field.");
 		}
 	}
-	
 	
 	/**
 	 * Return the new username entered. 

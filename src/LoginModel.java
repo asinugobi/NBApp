@@ -1,10 +1,16 @@
 
 import java.sql.*;
 
-import com.sun.glass.ui.Cursor;
+/**
+ * Model class for login database. 
+ * @author obinnaasinugo
+ *
+ */
 public class LoginModel {
 	Connection connection;
-	
+	/**
+	 * Constructor for connection 
+	 */
 	public LoginModel(){
 		connection = SqliteConnection.Connector();
 		if (connection == null ) System.exit(1);
@@ -145,10 +151,9 @@ public class LoginModel {
 			// prepare the query 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, username);
-
 			// query is executed and saved here 
 			resultSet = preparedStatement.executeQuery(); 
-
+			// return the team; else return null if fails 
 			if (resultSet.next()){
 				return resultSet.getString("team"); 
 			}
@@ -162,7 +167,6 @@ public class LoginModel {
 			preparedStatement.close();
 			resultSet.close(); 
 		}
-
 	}
 	
 	/**
@@ -183,7 +187,7 @@ public class LoginModel {
 
 			// query is executed and saved here 
 			resultSet = preparedStatement.executeQuery(); 
-
+			// return the player; else return null if fails 
 			if (resultSet.next()){
 				return resultSet.getString("player"); 
 			}

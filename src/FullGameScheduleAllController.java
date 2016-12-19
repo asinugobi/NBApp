@@ -22,8 +22,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * Controller class for handling the Full Game Schedule All Stage 
+ * @author obinnaasinugo
+ *
+ */
 public class FullGameScheduleAllController implements Initializable {
 
+	// load table info 
 	@FXML private TableView<Game> schedule;
 	@FXML private TableColumn<Game, String> opponent;
 	@FXML private TableColumn<Game, String> date;
@@ -31,13 +37,12 @@ public class FullGameScheduleAllController implements Initializable {
 	@FXML private TableColumn<Game, String> location;
 	@FXML private ImageView ivBack; 
 	
-	private FullGameSchedule fullSchedule;
-	private ArrayList<Game> season; 
+	private FullGameSchedule fullSchedule; // store all games 
+	private ArrayList<Game> season; // list for games 
 	
 	// load user info into controller
 	private LoginModel loginModel = new LoginModel(); 
 	private String username ;
-	private String favoritePlayer; 
 	private String favoriteTeam;  
 
 	
@@ -51,7 +56,6 @@ public class FullGameScheduleAllController implements Initializable {
 		fullSchedule = new FullGameSchedule(); 
 		season = new ArrayList<Game>();
 		username = loginModel.getUsername(); 
-		favoritePlayer = loginModel.getPlayer(username); 
 		favoriteTeam = loginModel.getTeam(username); 
 	}
 	
@@ -66,7 +70,13 @@ public class FullGameScheduleAllController implements Initializable {
 		private final SimpleStringProperty time;
 		private final SimpleStringProperty location;
 
-
+		/**
+		 * Constructor for game object 
+		 * @param opponent
+		 * @param date
+		 * @param time
+		 * @param location
+		 */
 		private Game(String opponent, String date, String time, String location) {
 			this.opponent = new SimpleStringProperty(opponent);
 			this.date = new SimpleStringProperty(date);
@@ -74,25 +84,40 @@ public class FullGameScheduleAllController implements Initializable {
 			this.location = new SimpleStringProperty(location);
 
 		}
-
+		/**
+		 * get opponent 
+		 * @return
+		 */
 		public String getOpponent() {
 			return opponent.get();
 		}
-
+		/**
+		 * get date
+		 * @return
+		 */
 		public String getDate() {
 			return date.get();
 		}
-
+		/**
+		 * get time 
+		 * @return
+		 */
 		public String getTime() {
 			return time.get();
 		}
-
+		/**
+		 * get location  
+		 * @return
+		 */
 		public String getLocation() {
 			return location.get();
 		}
-
 	}
 	
+	/**
+	 * List of all games 
+	 * @return
+	 */
 	private List<Game> getAllGames(){
 		ArrayList<String[]> allGames = fullSchedule.getSeasonGames(favoriteTeam);
 		for (String[] match : allGames){
@@ -104,24 +129,29 @@ public class FullGameScheduleAllController implements Initializable {
 		return season; 
 	}	
 	
-	
+	/**
+	 * Takes user back to Full Game Stage 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void back(ActionEvent event) throws IOException{
 		Stage primaryStage =  (Stage) ((Node) event.getSource()).getScene().getWindow();  
-		
 		// set title of the stage 
 		primaryStage.setTitle("Full Game Schedule");
-		
 		// load the category scene file 
 		Parent root = FXMLLoader.load(getClass().getResource("FullGameSchedule.fxml"));
 		Scene scene = new Scene(root);
-		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
+	/**
+	 * Initialize the stage with table values and image(s)
+	 */
 	@Override
 	public void initialize(URL locationURL, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		// set up table 
 		schedule.setEditable(true);
 		opponent.setCellValueFactory(new PropertyValueFactory<Game, String>("opponent"));
 		date.setCellValueFactory(new PropertyValueFactory<Game, String>("date"));
@@ -129,6 +159,7 @@ public class FullGameScheduleAllController implements Initializable {
 		location.setCellValueFactory(new PropertyValueFactory<Game, String>("location"));
 		schedule.getItems().setAll(getAllGames());
 		
+		//display background image 
 		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
 		Image image = new Image(imageName.toURI().toString());
 		// simple displays ImageView the image as is

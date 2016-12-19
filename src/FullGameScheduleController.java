@@ -20,12 +20,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * Controller for Full Game Stage. 
+ * @author obinnaasinugo
+ *
+ */
 public class FullGameScheduleController implements Initializable {
 	
 	// load user info into controller
 	private LoginModel loginModel = new LoginModel(); 
 	private String username ;
-	private String favoritePlayer; 
 	private String favoriteTeam;  
 	private FullGameSchedule fullSchedule;
 	
@@ -46,7 +50,6 @@ public class FullGameScheduleController implements Initializable {
 	 */
 	public FullGameScheduleController() throws SQLException, MalformedURLException, IOException {
 		username = loginModel.getUsername(); 
-		favoritePlayer = loginModel.getPlayer(username); 
 		favoriteTeam = loginModel.getTeam(username);
 		fullSchedule = new FullGameSchedule();
 	}
