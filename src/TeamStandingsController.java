@@ -52,6 +52,7 @@ public class TeamStandingsController implements Initializable{
 		primaryStage.setTitle("Select Category");
 		FXMLLoader loaderStandings = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));
 		Parent root = loaderStandings.load();
+
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);

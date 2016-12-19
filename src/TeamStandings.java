@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.Formatter;
+
 
 /**
  * This class is responsible for evaluating data pertaining to
@@ -79,7 +81,7 @@ public class TeamStandings {
 
 		return rankings;
 	}
-	
+
 	/**
 	 * This method will take in the rank of a team and return the team's info (name, record, etc.)
 	 * @param rank
