@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 /**
  * This class will control the Cumualtive Stats Panel
@@ -28,25 +32,33 @@ import javafx.stage.Stage;
  */
 public class CumulativeStatsController implements Initializable{
 
-	private String username = null;
-
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
 	@FXML private TableColumn<Player, Double> avg;
+	@FXML private ImageView ivBack; 
 	private ArrayList<Player> top5Rebounds;
 	private ArrayList<Player> top5Scores;
 	private ArrayList<Player> top5Steals;
 	private ArrayList<Player> top5Blocks;
 	private ArrayList<Player> top5Assists;
 	private CumulativePlayerStats stats;
+	
+	// load user info into controller
+	private LoginModel loginModel = new LoginModel(); 
+	private String username ;
+	private String favoritePlayer; 
+	private String favoriteTeam;  
 
-	public CumulativeStatsController() throws MalformedURLException, IOException {
+	public CumulativeStatsController() throws MalformedURLException, IOException, SQLException {
 		top5Rebounds =  new ArrayList<Player>();
 		top5Scores = new ArrayList<Player>();
 		top5Steals = new ArrayList<Player>();
 		top5Blocks = new ArrayList<Player>();
 		top5Assists = new ArrayList<Player>();
 		stats = new CumulativePlayerStats();
+		username = loginModel.getUsername(); 
+		favoritePlayer = loginModel.getPlayer(username); 
+		favoriteTeam = loginModel.getTeam(username); 
 	}
 
 	private List<Player> getReboundList(){
@@ -101,10 +113,12 @@ public class CumulativeStatsController implements Initializable{
 
 		// set title of the stage
 		primaryStage.setTitle("Select Category");
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));
-		Parent root = loader.load();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
+		Parent root = loader.load(); 
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));
+//		Parent root = loader.load();
 		CategoryController category = loader.<CategoryController>getController();
-		category.setUserName(username);
+//		category.setUserName(username);
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -185,32 +199,18 @@ public class CumulativeStatsController implements Initializable{
 			return name.get();
 		}
 
-		// public void setFirstName(String fName) {
-		// 	name.set(fName);
-		// }
-
 		public Double getAvg() {
 			return avg.get();
 		}
 
-		// public void setLastName(String fName) {
-		// 	avg.set(fName);
-		// }
-
-	}
-
-	/**
-	 * This method will handle passing through the username info so it can be used to query the database
-	 * @param name
-	 */
-	public void setUserName(String name){
-		username = name;
-		System.out.println(username);
 	}
 
   // initializes table_view
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
+		Image image = new Image(imageName.toURI().toString());
+		// simple displays ImageView the image as is
+		ivBack.setImage(image);
 	}
 }

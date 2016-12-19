@@ -23,6 +23,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="52.0" layoutY="55.0" text="Label" />
+      <Label fx:id="activityLabel" layoutX="220.0" layoutY="58.0" prefHeight="17.0" prefWidth="173.0" text="Label" />
    </children>
 </AnchorPane>

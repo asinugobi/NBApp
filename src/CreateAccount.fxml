@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="305.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane prefHeight="382.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainControllerv2">
    <children>
-      <TextField fx:id="newUsername" layoutX="112.0" layoutY="78.0" promptText="Enter username" />
-      <TextField fx:id="favoriteTeam" layoutX="112.0" layoutY="169.0" promptText="Enter favorite team" />
-      <TextField fx:id="favoritePlayer" layoutX="112.0" layoutY="214.0" promptText="Enter favorite player " />
-      <Text layoutX="22.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create user account... " wrappingWidth="237.21875">
+      <ImageView fitHeight="376.0" fitWidth="474.0" layoutX="34.0" layoutY="3.0" opacity="0.44" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/MJ_NBA.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="newUsername" layoutX="140.0" layoutY="90.0" promptText="Enter username" />
+      <TextField fx:id="favoriteTeam" layoutX="140.0" layoutY="191.0" promptText="Enter favorite team" />
+      <TextField fx:id="favoritePlayer" layoutX="140.0" layoutY="242.0" promptText="Enter favorite player " />
+      <Text layoutX="14.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create User Account... " wrappingWidth="277.21875">
          <font>
-            <Font size="21.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Text>
-      <Button layoutX="263.0" layoutY="264.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="27.0" prefWidth="101.0" text="Create Account">
+      <Button layoutX="338.0" layoutY="315.0" mnemonicParsing="false" onAction="#createAccountv2" prefHeight="27.0" prefWidth="119.0" text="Create Account">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Label fx:id="accountStatus" layoutX="42.0" layoutY="269.0" prefHeight="17.0" prefWidth="197.0" />
-      <PasswordField fx:id="newPassword" layoutX="112.0" layoutY="126.0" promptText="Enter password" />
+      <Label fx:id="accountStatus" layoutX="109.0" layoutY="292.0" prefHeight="17.0" prefWidth="229.0" />
+      <PasswordField fx:id="newPassword" layoutX="140.0" layoutY="142.0" promptText="Enter password" />
+      <Button layoutX="34.0" layoutY="315.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="119.0" text="Back">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

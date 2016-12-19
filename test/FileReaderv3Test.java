@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -32,6 +31,7 @@ public class FileReaderv3Test {
 	@Test
 	public void testReadIn() {
 		File testFile = new File("resources/cumulative_player_stats.csv"); 	
+
 		try(Scanner in = new Scanner(testFile); 
 				PrintWriter out = new PrintWriter("output-test.txt"); 
 				){

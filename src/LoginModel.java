@@ -40,7 +40,6 @@ public class LoginModel {
 		
 		String query = "select * from accounts where username = ? and password = ?";
 		try {
-			
 			// prepare the query 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, user);
@@ -64,6 +63,45 @@ public class LoginModel {
 		}
 	}
 	
+	/**
+	 * This method will return true if the username already exists and false otherwise 
+	 * @param username
+	 * @return true- username already exists; false otherwise 
+	 * @throws SQLException
+	 */
+	public boolean isUsername(String username) throws SQLException{
+		PreparedStatement preparedStatement = null; 
+		ResultSet resultSet = null; 
+		
+		String query = "select * from accounts where username = ?";
+		try {
+			// prepare the query 
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			
+			// query is executed and saved here 
+			resultSet = preparedStatement.executeQuery(); 
+			
+			if (resultSet.next()){
+				return true; 
+			}
+			else
+				return false; 
+		}
+		catch(Exception e){
+			return false; 
+		}
+		finally{
+			preparedStatement.close(); 
+			resultSet.close(); 
+		}
+	}
+	
+	/**
+	 * This method will get the username of the current user in the application. 
+	 * @return username
+	 * @throws SQLException
+	 */
 	public String getUsername() throws SQLException{
 		PreparedStatement preparedStatement = null; 
 		ResultSet resultSet = null; 
@@ -104,7 +142,6 @@ public class LoginModel {
 		
 		String query = "select team from accounts where username = ?"; 
 		try {
-
 			// prepare the query 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, username);
@@ -140,7 +177,6 @@ public class LoginModel {
 		
 		String query = "select player from accounts where username = ?"; 
 		try {
-
 			// prepare the query 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, username);
@@ -161,36 +197,57 @@ public class LoginModel {
 			preparedStatement.close();
 			resultSet.close(); 
 		}
-
 	}
 	
+	/**
+	 * This method will update the 'current' table in the database and store the current user 
+	 * @param username
+	 * @throws SQLException
+	 */
 	public void updateDb(String username) throws SQLException{
 		PreparedStatement preparedStatement = null; 
-//		ResultSet resultSet = null; 
 		
 		String query = "UPDATE current SET username = ? WHERE id = 1"; 
 		try {
-
-			// prepare the query 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, username);
-//			preparedStatement.setString(2,);
-
-			// query is executed and saved here 
-//			resultSet = preparedStatement.executeQuery(); 
-			preparedStatement.executeUpdate();
-
-			
+			preparedStatement.executeUpdate();	
 		}
 		catch(Exception e){
-			 
+			// print trace 
+			e.printStackTrace(); 
+		}
+		finally{
+			preparedStatement.close();; 
+		}
+	}	
+	
+	/**
+	 * This method is responsible for inserting a new account into the database (accounts table) 
+	 * @param username - user's username 
+	 * @param pwd - user's password
+	 * @param team - user's favorite team 
+	 * @param player - user's favorite player
+	 * @throws SQLException
+	 */
+	public void addNewAccount(String username, String pwd, String team, String player) throws SQLException{
+		PreparedStatement preparedStatement = null; 
+		
+		String query = "insert into accounts(id,username,password,team,player) values(0,?,?,?,?)"; 
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, pwd);
+			preparedStatement.setString(3, team);
+			preparedStatement.setString(4, player);
+			preparedStatement.executeUpdate();	
+		}
+		catch(Exception e){
+			// print trace 
+			e.printStackTrace(); 
 		}
 		finally{
 			preparedStatement.close();
-//			resultSet.close(); 
 		}
-
 	}
-	
-	
 }

@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -11,12 +9,17 @@ import java.util.ArrayList;
  *
  */
 public class FullGameSchedule {
-	private FileDownloader dl;
-	private FileReaderv3  fullGameSchedule; 
 	
+	private FileDownloader dl; // used for downloading file 
+	private FileReaderv3  fullGameSchedule; // used for reading in data 
 	
+	/**
+	 * Constructor for initializing objects. Download the data file and read into respective object. 
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public FullGameSchedule() throws MalformedURLException, IOException{
-		dl = new FileDownloader("resources/");
+		dl = new FileDownloader("resources/"); 
 		dl.fullSchedule();
 		fullGameSchedule = new FileReaderv3("resources/full_game_schedule.csv");
 	}
@@ -35,20 +38,15 @@ public class FullGameSchedule {
 	 * @return full schedule of games for the season 
 	 */
 	public ArrayList<String[]> getSeasonGames(String team){
-		
 		ArrayList<String[]> teamSchedule = new ArrayList<String[]>(); // create a list of games
 		String[] gameInfoArray; // store game info as an array 
-		
 		// store all games of the 'team' into a list 
 		for(String gameInfo : fullGameSchedule.getLines()){
 			gameInfoArray = gameInfo.split(","); 
-			
 			if(gameInfoArray[6].equalsIgnoreCase(team) || 
 					gameInfoArray[10].equalsIgnoreCase(team))
 				teamSchedule.add(gameInfoArray);
 		}
-		
-		
 		return teamSchedule; 
 	}
 	
@@ -64,15 +62,34 @@ public class FullGameSchedule {
 		// store all games of the 'team' into a list 
 		for(String gameInfo : fullGameSchedule.getLines()){
 			gameInfoArray = gameInfo.split(","); 
-			
 			if(gameInfoArray[1].equalsIgnoreCase(date))
 				games.add(gameInfoArray);
 		}
-		
 		return games; 
 	}
-
 	
-	
-	
+	/**
+	 * This method is responsible for returning game information (away team, home team, time, and location)
+	 * for a team playing on a certain day. 
+	 * @param team
+	 * @param date
+	 * @return game information 
+	 */
+	public String[] getGame(String team, String date){
+		String[] game = new String[4]; // store game details 
+		ArrayList<String[]> games = getGamesOnDay(date); // store all games on a given day 
+		
+		// cycle through the list of games and determine if team is playing for a given day 
+		for(String[] matchUp : games){
+			// if team is either the home or away team, store game details 
+			if(matchUp[6].equals(team) || matchUp[10].equals(team)){
+				game[0] = matchUp[6]; // store away team   
+				game[1] = matchUp[10]; // store home team 
+				game[2] = matchUp[2]; // store time of game 
+				game[3] = matchUp[11]; // store location of the game 
+				return game; 
+			}
+		}
+		return null;
+	}
 }

@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -31,12 +34,13 @@ public class TeamStatsController implements Initializable{
 	private LoginModel loginModel = new LoginModel(); 
 	private String username = loginModel.getUsername(); 
 	private String favoritePlayer = loginModel.getPlayer(username); 
-	private String favoriteTeam = loginModel.getTeam(username); 
+	private String favoriteTeam = loginModel.getTeam(username);
 	
 	private TeamStats theTeam;
 	@FXML private TableView<Player> top5;
 	@FXML private TableColumn<Player, String> name;
 	@FXML private TableColumn<Player, String> avg;
+	@FXML private ImageView ivBack; 
 	private ArrayList<Player> top5Rebounds;
 	private ArrayList<Player> top5Scores;
 	private ArrayList<Player> top5Steals;
@@ -119,11 +123,7 @@ public class TeamStatsController implements Initializable{
 
 		// load the category scene file 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));	
-		Parent root = loader.load(); 
-		// pass username info 
-		CategoryController category = loader.<CategoryController>getController(); 
-		category.setUserName(username);
-		
+		Parent root = loader.load();
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -212,14 +212,16 @@ public class TeamStatsController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		        name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
-		        avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
-		        top5.getItems().setAll(getScoreList());
+		name.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
+		avg.setCellValueFactory(new PropertyValueFactory<Player, String>("avg"));
+		top5.getItems().setAll(getScoreList());
+
+		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
+		Image image = new Image(imageName.toURI().toString());
+		// simple displays ImageView the image as is
+		ivBack.setImage(image);
+
 	}
 
-	public void setUserName(String username) {
-		// TODO Auto-generated method stub
-		this.username = username; 
-		
-	}
+
 }
