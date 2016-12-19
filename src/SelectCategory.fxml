@@ -14,7 +14,6 @@
             <Image url="@../resources/MJ_NBA.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="Scoreboard" layoutX="196.0" layoutY="105.0" mnemonicParsing="false" onAction="#loadCategory" prefHeight="41.0" prefWidth="129.0" text="Scoreboard" />
       <Text layoutX="166.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select category..." wrappingWidth="222.21875">
          <font>
             <Font size="24.0" />
