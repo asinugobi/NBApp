@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="482.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TeamStandingsController">
+<AnchorPane prefHeight="482.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TeamStandingsController">
    <children>
+      <ImageView fx:id="ivBack" fitHeight="340.0" fitWidth="385.0" layoutX="54.0" layoutY="71.0" opacity="0.45" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="110.0" text="Back" />
-      <TableView fx:id="top5" editable="true" fixedCellSize="0.0" layoutX="133.0" layoutY="13.0" prefHeight="450.0" prefWidth="325.0">
+      <TableView fx:id="top5" editable="true" fixedCellSize="0.0" layoutX="133.0" layoutY="13.0" opacity="0.85" prefHeight="450.0" prefWidth="325.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="150.0" text="League Standings" />
         </columns>
@@ -16,5 +21,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Button fx:id="leaguestandings" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#leaguestandings" prefHeight="27.0" prefWidth="110.0" text="testing" />
    </children>
 </AnchorPane>

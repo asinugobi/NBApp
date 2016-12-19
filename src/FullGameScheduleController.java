@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -32,6 +35,8 @@ public class FullGameScheduleController implements Initializable {
 	@FXML private Label awayTeam; // store away team label  
 	@FXML private Label homeTeam; // store home team label 
 	@FXML private Label gameDetails; // store time and location 
+	@FXML private Label at; // store at sign 
+	@FXML private Label noGame; // store label for no game 
 
 	/**
 	 * Initialize constructor to handle and load the user info (favorite team and player) 
@@ -84,24 +89,16 @@ public class FullGameScheduleController implements Initializable {
 		primaryStage.show();
 	}
 
-//	public void setLabels(){
-//		String[] game = fullSchedule.getGame(favoriteTeam, "2016-12-16");
-//		String away = game[0]; // store away team  
-//		String home = game[1]; // store home team 
-//		String time = game[2] + " EST"; // store time of game
-//		String gameLocation = game[3];  // store location of the game 
-//		
-////		awayTeam.setText("Bucks");
-//		homeTeam.setText(home);
-//		gameDetails.setText(time + ", " + gameLocation);
-//	}
+	public void setUpNoGame(){
+		noGame.setText("No game today...");
+	}
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		// load the image
-		
-		String[] game = fullSchedule.getGame("Celtics", "2016-12-16");
+	/**
+	 * This method will take in a game and set up the stage with the appropriate 
+	 * labels and images of away/ home team along with game details.
+	 * @param game
+	 */
+	public void setUpGame(String[] game){
 		String away = game[0]; // store away team  
 		String home = game[1]; // store home team 
 		String time = game[2] + " EST"; // store time of game
@@ -110,13 +107,9 @@ public class FullGameScheduleController implements Initializable {
 		awayTeam.setText(away);
 		homeTeam.setText(home);
 		gameDetails.setText(time + ", " + gameLocation);
+		at.setText("@"); 
 		
-		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
-        Image image = new Image(imageName.toURI().toString());
-        // simple displays ImageView the image as is
-        ivBack.setImage(image);
-        
-        File imageNameHome = new File("resources/" + home + ".jpg"); 
+		File imageNameHome = new File("resources/" + home + ".jpg"); 
         Image imageHome = new Image(imageNameHome.toURI().toString());
         // simple displays ImageView the image as is
         ivHome.setImage(imageHome);
@@ -125,5 +118,26 @@ public class FullGameScheduleController implements Initializable {
         Image imageAway = new Image(imageNameAway.toURI().toString());
         // simple displays ImageView the image as is
         ivAway.setImage(imageAway);
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		// construct the date
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateobj = new Date();
+		String date = df.format(dateobj); // store date 
+		 
+		String[] game = fullSchedule.getGame(favoriteTeam, date); // load game 
+		// check to see if there's a game today 
+		if(game==null)
+			setUpNoGame(); 
+		else
+			setUpGame(game); 
+	
+		File imageName = new File("resources/" + favoriteTeam + ".jpg"); // load background image 
+        Image image = new Image(imageName.toURI().toString());
+        // simple displays ImageView the image as is
+        ivBack.setImage(image);
 	}
 }
