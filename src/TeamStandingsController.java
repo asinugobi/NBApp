@@ -48,8 +48,8 @@ public class TeamStandingsController implements Initializable{
 			
 			leagueStandings.add(new Team(temp[i]) );
 		}
-		System.out.println(temp[1]);
-		System.out.println(leagueStandings.get(0));
+//		System.out.println(temp[1]);
+//		System.out.println(leagueStandings.get(0));
 		return leagueStandings;
 	}
 
@@ -61,8 +61,6 @@ public class TeamStandingsController implements Initializable{
 		primaryStage.setTitle("Select Category");
 		FXMLLoader loaderStandings = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));
 		Parent root = loaderStandings.load();
-		CategoryController category = loaderStandings.<CategoryController>getController();
-		category.setUserName(username);
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -97,15 +95,6 @@ public class TeamStandingsController implements Initializable{
 		public String getName() {
 			return name.get();
 		}
-	}
-
-	/**
-	 * This method will handle passing through the username info so it can be used to query the database
-	 * @param name
-	 */
-	public void setUserName(String name){
-		username = name;
-		System.out.println(username);
 	}
 
   // initializes table_view

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -11,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -22,17 +24,26 @@ public class FullGameScheduleController implements Initializable {
 	private String username ;
 	private String favoritePlayer; 
 	private String favoriteTeam;  
+	private FullGameSchedule fullSchedule;
 	
-	@FXML private ImageView iv1; 
+	@FXML private ImageView ivBack; // background image 
+	@FXML private ImageView ivHome; // home team image
+	@FXML private ImageView ivAway; // away team image 
+	@FXML private Label awayTeam; // store away team label  
+	@FXML private Label homeTeam; // store home team label 
+	@FXML private Label gameDetails; // store time and location 
 
 	/**
 	 * Initialize constructor to handle and load the user info (favorite team and player) 
 	 * @throws SQLException
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public FullGameScheduleController() throws SQLException {
+	public FullGameScheduleController() throws SQLException, MalformedURLException, IOException {
 		username = loginModel.getUsername(); 
 		favoritePlayer = loginModel.getPlayer(username); 
-		favoriteTeam = loginModel.getTeam(username); 
+		favoriteTeam = loginModel.getTeam(username);
+		fullSchedule = new FullGameSchedule();
 	}
 
 	/**
@@ -73,14 +84,46 @@ public class FullGameScheduleController implements Initializable {
 		primaryStage.show();
 	}
 
+//	public void setLabels(){
+//		String[] game = fullSchedule.getGame(favoriteTeam, "2016-12-16");
+//		String away = game[0]; // store away team  
+//		String home = game[1]; // store home team 
+//		String time = game[2] + " EST"; // store time of game
+//		String gameLocation = game[3];  // store location of the game 
+//		
+////		awayTeam.setText("Bucks");
+//		homeTeam.setText(home);
+//		gameDetails.setText(time + ", " + gameLocation);
+//	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		// load the image
-		File imageName = new File("resources/CHI-1.png"); 
+		
+		String[] game = fullSchedule.getGame("Celtics", "2016-12-16");
+		String away = game[0]; // store away team  
+		String home = game[1]; // store home team 
+		String time = game[2] + " EST"; // store time of game
+		String gameLocation = game[3];  // store location of the game 
+		
+		awayTeam.setText(away);
+		homeTeam.setText(home);
+		gameDetails.setText(time + ", " + gameLocation);
+		
+		File imageName = new File("resources/" + favoriteTeam + ".jpg"); 
         Image image = new Image(imageName.toURI().toString());
         // simple displays ImageView the image as is
-        iv1.setImage(image);
+        ivBack.setImage(image);
+        
+        File imageNameHome = new File("resources/" + home + ".jpg"); 
+        Image imageHome = new Image(imageNameHome.toURI().toString());
+        // simple displays ImageView the image as is
+        ivHome.setImage(imageHome);
+        
+        File imageNameAway = new File("resources/" + away + ".jpg"); 
+        Image imageAway = new Image(imageNameAway.toURI().toString());
+        // simple displays ImageView the image as is
+        ivAway.setImage(imageAway);
 	}
-
 }
