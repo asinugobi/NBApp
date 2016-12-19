@@ -3,29 +3,13 @@
  * @author obinnaasinugo
  */
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.jar.Attributes.Name;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
@@ -172,5 +156,17 @@ public class CategoryController {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
+	
+	public void logout(ActionEvent event) throws IOException{
+		Stage primaryStage =  (Stage) ((Node) event.getSource()).getScene().getWindow();  
+		
+		// set title of the stage 
+		primaryStage.setTitle("Welcome to NBA Feeds!");
+		
+		// load the category scene file 
+		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
 }

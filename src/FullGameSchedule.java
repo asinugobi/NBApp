@@ -68,4 +68,28 @@ public class FullGameSchedule {
 		return games; 
 	}
 	
+	/**
+	 * This method is responsible for returning game information (away team, home team, time, and location)
+	 * for a team playing on a certain day. 
+	 * @param team
+	 * @param date
+	 * @return game information 
+	 */
+	public String[] getGame(String team, String date){
+		String[] game = new String[4]; // store game details 
+		ArrayList<String[]> games = getGamesOnDay(date); // store all games on a given day 
+		
+		// cycle through the list of games and determine if team is playing for a given day 
+		for(String[] matchUp : games){
+			// if team is either the home or away team, store game details 
+			if(matchUp[6].equals(team) || matchUp[10].equals(team)){
+				game[0] = matchUp[6]; // store away team   
+				game[1] = matchUp[10]; // store home team 
+				game[2] = matchUp[2]; // store time of game 
+				game[3] = matchUp[11]; // store location of the game 
+				return game; 
+			}
+		}
+		return null;
+	}
 }

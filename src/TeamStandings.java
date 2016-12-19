@@ -1,10 +1,9 @@
-
-
 import java.util.HashMap;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Formatter;
+
 
 /**
  * This class is responsible for evaluating data pertaining to

@@ -2,14 +2,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.application.Application;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +21,6 @@ import javafx.stage.Stage;
  *
  */
 public class TeamStandingsController implements Initializable{
-
-	private String username = null;
 
 	@FXML private TableView<Team> top5;
 	@FXML private TableColumn<Team, String> name;
@@ -48,6 +40,7 @@ public class TeamStandingsController implements Initializable{
 			
 			leagueStandings.add(new Team(temp[i]) );
 		}
+
 		return leagueStandings;
 	}
 
@@ -59,8 +52,7 @@ public class TeamStandingsController implements Initializable{
 		primaryStage.setTitle("Select Category");
 		FXMLLoader loaderStandings = new FXMLLoader(getClass().getResource("SelectCategory.fxml"));
 		Parent root = loaderStandings.load();
-		CategoryController category = loaderStandings.<CategoryController>getController();
-		//category.setUserName(username);
+
 		Scene scene = new Scene(root);
 
 		primaryStage.setScene(scene);
@@ -95,15 +87,6 @@ public class TeamStandingsController implements Initializable{
 		public String getName() {
 			return name.get();
 		}
-	}
-
-	/**
-	 * This method will handle passing through the username info so it can be used to query the database
-	 * @param name
-	 */
-	public void setUserName(String name){
-		username = name;
-		System.out.println(username);
 	}
 
   // initializes table_view
